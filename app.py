@@ -49,6 +49,13 @@ def login():
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
+@app.route("/populr")
+def popular():
+    return 'popupal'
+
+@app.route("/timeline")
+def timeline():
+    return 'timeline'
 
 if __name__ == '__main__':
     app.run(debug=True)
