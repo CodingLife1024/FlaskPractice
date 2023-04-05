@@ -21,6 +21,10 @@ posts = [
 
 
 @app.route("/")
+@app.route('/welcome')
+def welcome():
+    return render_template('welcome.html')
+
 @app.route("/home")
 def home():
     return render_template('home.html', posts=posts)
@@ -31,7 +35,7 @@ def register():
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', title='Signup', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
