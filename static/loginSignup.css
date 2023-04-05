@@ -2,4 +2,60 @@ body {
     background: linear-gradient(to right, #16d1f0 , hsl(234, 98%, 52%));
     color: #000000;
     margin-top: 5rem;
+    height: 100%;
+    width: 100%;
 }
+  
+  /* Style the form input fields */
+.form-control {
+    border-radius: 0;
+    border: 1px solid #ccc;
+}
+
+/* Styles the label element */
+.form-group label {
+    color: blue;
+    font-size: 18px;
+  }
+  
+  /* Styles the input element */
+  .form-group input {
+    border: 2px solid green;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  /* Styles the error message element */
+  .form-group .invalid-feedback {
+    color: red;
+    font-size: 14px;
+  }
+
+  /* Styles the form group container as a flexbox column */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Adds some space between form groups */
+  }
+  
+  /* Styles the label element */
+  .form-group label {
+    margin-bottom: 5px;
+  }
+
+  
+/* Styles the form group container */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the container horizontally */
+    margin-bottom: 20px;
+  }
+  
+  /* Styles the input field */
+  .form-control-lg {
+    width: 50%; /* Adjust the width to your needs */
+    max-width: 500px; /* Set a max-width to prevent it from getting too wide */
+  }
+  
+  
