@@ -5,10 +5,16 @@
         <title>Tesseract</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='welcome.css') }}">
     </head>
     <body>
-        <h1>Welcome to Tesseract</h1>
-        <button><a href="{{ url_for('register') }}">Next</a></button>
+        <div class="container"></div>
+            <div class="bu"></div>
+                <h1>Welcome to Tesseract</h1>
+            </div>
+            <div class="but"></div>
+                <button class="button"><a href="{{ url_for('register') }}">Next</a></button>
+            </div>
+        </div>
     </body>
 </html>
