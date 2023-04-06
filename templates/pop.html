@@ -7,13 +7,28 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pop.css') }}">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600;700&display=swap');
+        </style>
     </head>
     <body>
-        <ul>
-            <li><a href="{{ url_for('popular') }}">Popular</a></li>
-            <li><a href="{{ url_for('timeline') }}">Timeline</a></li>
-            <li><a href="{{ url_for('search') }}">Search</a></li>
-            <li><a href="{{ url_for('profile') }}">Profile</a></li>
-        </ul>
+        <div class="container">
+            <div class="top">
+                <!-- <div class="img">
+                    <img src="Images/image-1@2x.png" alt="Logo">
+                </div> -->
+                <div class="appname">
+                    <span>Tesseract</span>
+                </div>
+            </div>
+            <div class="navbar">
+                <ul>
+                    <li><a href="{{ url_for('popular') }}">Popular</a></li>
+                    <li><a href="{{ url_for('timeline') }}">Timeline</a></li>
+                    <li><a href="{{ url_for('search') }}">Search</a></li>
+                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                </ul>
+            </div>
+        </div>
     </body>
 </html>
