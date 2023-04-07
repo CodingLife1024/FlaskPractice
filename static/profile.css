@@ -137,26 +137,27 @@ h4{
   background-color: #b9bab9;
 }
 
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  border-radius: 10px;
-  background-color: blue;
-  margin: 10px;
-}
-
-.button button {
-  background-color: #ffffff; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: black; /* White text */
-  padding: 10px 24px; /* Some padding */
-  margin: 3px;
-  cursor: pointer; /* Pointer/hand icon */
+.butto button {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 10px 24px;
+  cursor: pointer;
   font-size: 20px;
   border-radius: 20px;
-  width: 100%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
+  width: 100%;
+  height: 50px;
+  display: block;
+  margin-top: 20px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
+.butto button:hover {
+  background-color: #1bfeeb;
+  color: black;
+}
+
+.butto button:active {
+  background-color: black;
+  color: white;
+}
