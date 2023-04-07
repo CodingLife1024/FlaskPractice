@@ -1,45 +1,32 @@
-{% extends "loginSignup.html" %}
-{% block content %}
-    <div class="content-section">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <h1>Signup</h1>
-                <div class="form-group">
-                    {{ form.username.label }}
-                    {% if form.username.errors %}
-                        {{ form.username(class="form-control-lg is-invalid", placeholder="username") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.username(class="form-control-lg", placeholder="username") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.password.label }}
-                    {% if form.password.errors %}
-                        {{ form.password(class="form-control-lg is-invalid", placeholder="password") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.password(class="form-control-lg", placeholder="password") }}
-                    {% endif %}
-                </div>
-            </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Register</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginSignup.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="appname"><h1>Tesseract</h1></div>
+        <div class="log">
+            <div class="image">
+                <img src="{{ url_for('static', filename='logo.png') }}">
             </div>
-        </form>
+            <div class="formm">
+                <h1>Signup</h1>
+	            <form action="{{ url_for('register') }}" method="POST">
+		            <label for="username">Username</label>
+                    <br>
+		            <input type="text" name="username" required placeholder="username" class="input-field">
+		            <br>
+		            <label for="password">Password</label>
+                    <br>
+		            <input type="password" name="password" required placeholder="password" class="input-field">
+		            <br>
+		            <input type="submit" value="Sign up" class="submit-btn">
+	            </form>
+            </div>
+        </div>
     </div>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
-        </small>
-    </div>
-{% endblock content %}
+</body>
+</html>

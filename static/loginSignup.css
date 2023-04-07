@@ -1,60 +1,73 @@
-body {
-    background: linear-gradient(to right, #16d1f0 , hsl(234, 98%, 52%));
-    color: #000000;
-    margin-top: 5rem;
-    height: 100%;
-    width: 100%;
-  }
-  
-  /* Style the form input fields */
-  .form-control {
-    border-radius: 0;
-    /* border: 1px solid #ccc; */
-    width: 500px;
-  }
-  
-  /* Styles the label element */
-  .form-group label {
-    color: white;
-    font-size: 18px;
-  }
-  
-  /* Styles the input element */
-  .form-group input {
-    border: 2px solid green;
-    border-radius: 30px;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  /* Styles the error message element */
-  .form-group .invalid-feedback {
-    color: red;
-    font-size: 14px;
-  }
-  
-  /* Styles the form group container as a flexbox column */
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px; /* Adds some space between form groups */
-  }
-  
-  /* Styles the label element */
-  .form-group label {
-    margin-bottom: 5px;
-  }
-  
-  /* Styles the form group container */
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers the container horizontally */
-    margin-bottom: 20px;
-  }
-  
-  /* Styles the input field */
-  .form-control-lg {
-    width: 80%; /* Adjust the width to your needs */
-    max-width: 500px; /* Set a max-width to prevent it from getting too wide */
-  }
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+
+body, html{
+  background-image: linear-gradient(to right, rgb(18, 198, 248) , rgb(9, 17, 133));
+}
+
+.container {
+  background-image: linear-gradient(to right,  rgb(18, 198, 248) , rgb(9, 17, 133));
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.log {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+input.input-field {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  background-color: #D9D9D9;
+  font-size: 16px;
+  width: 300px;
+  height: 25px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+input.submit-btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #008CBA;
+  color: white;
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.image img {
+  height: 400px;
+  margin-right: 200px;
+}
+
+.formm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  margin-left: 200px;
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.appname h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: white;
+  font-family: 'Roboto Slab', serif;
+}
