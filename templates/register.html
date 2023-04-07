@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Register</title>
+	<title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginSignup.css') }}">
 </head>
 <body>
@@ -13,17 +13,14 @@
                 <img src="{{ url_for('static', filename='logo.png') }}">
             </div>
             <div class="formm">
-                <h1>Signup</h1>
+                <h2>Signup</h2>
 	            <form action="{{ url_for('register') }}" method="POST">
-		            <label for="username">Username</label>
-                    <br>
 		            <input type="text" name="username" required placeholder="username" class="input-field">
-		            <br>
-		            <label for="password">Password</label>
-                    <br>
 		            <input type="password" name="password" required placeholder="password" class="input-field">
-		            <br>
 		            <input type="submit" value="Sign up" class="submit-btn">
+                    <div class="writing">
+                        <h4>Already have an account? <a href="{{ url_for('login') }}">Login!</a></h4>
+                    </div>
 	            </form>
             </div>
         </div>

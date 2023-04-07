@@ -22,12 +22,12 @@ def register():
         if not username or not password:
             flash('Please enter both username and password.')
             return redirect(url_for('register'))
-        
+        else:
         # Redirect to a home page
-        return redirect(url_for('home'))
-    
+            return redirect(url_for('home'))
+    else:
     # If the request method is GET, return the registration form
-    return render_template('register.html')
+        return render_template('register.html')
 
 
 @app.route('/success')

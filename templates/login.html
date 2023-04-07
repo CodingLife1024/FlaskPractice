@@ -2,21 +2,28 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Register</title>
+	<title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginSignup.css') }}">
 </head>
 <body>
-	<h1>Signup</h1>
-    <img src="{{ url_for('static', filename='logo.png') }}">
-	<form action="{{ url_for('register') }}" method="POST">
-		<label for="username">Username</label>
-        <br>
-		<input type="text" name="username" required>
-		<br>
-		<label for="password">Password</label>
-        <br>
-		<input type="password" name="password" required>
-		<br>
-		<input type="submit" value="Login">
-	</form>
+    <div class="container">
+        <div class="appname"><h1>Tesseract</h1></div>
+        <div class="log">
+            <div class="image">
+                <img src="{{ url_for('static', filename='logo.png') }}">
+            </div>
+            <div class="formm">
+                <h2>Signup</h2>
+	            <form action="{{ url_for('register') }}" method="POST">
+		            <input type="text" name="username" required placeholder="username" class="input-field">
+		            <input type="password" name="password" required placeholder="password" class="input-field">
+		            <input type="submit" value="Login" class="submit-btn">
+                    <div class="writing">
+                        <h4>Not a registered user? <a href="{{ url_for('register') }}">Sign up!</a></h4>
+                    </div>
+	            </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

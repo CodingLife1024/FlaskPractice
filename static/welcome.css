@@ -1,37 +1,57 @@
-body {
-    background-image: linear-gradient(to right, rgb(187, 0, 255) , rgb(0, 255, 68));
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+
+body, html{
+    height: 100%;
+}
+body{
+  background-image: url("/static/wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    height: 100%;
 }
 
-.container > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.msg{
+    margin-bottom: 20px;
 }
 
-h1 {
-    border: 2px #eee solid;
-    color: brown;
-    text-align: center;
-    padding: 10px;
-}
-
-.button {
-    background-color: #000000;
-    border: none;
+h1{
+    font-size: 60px;
     color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    margin: 4px 2px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.button{
+    width: 200px;
+}
+
+.button span {
     cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
   }
