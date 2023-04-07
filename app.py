@@ -64,7 +64,7 @@ def search():
 
 @app.route("/profile")
 def profile():
-    return 'timeline'
+    return render_template('profile.html')
 
 @app.route("/create")
 def create():

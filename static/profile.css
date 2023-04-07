@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600;700&display=swap');
+
+body, html{
+  background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
+  padding: 1%;
+}
+
+.top{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  height: 20%;
+  background-color: transparent;
+  margin-bottom: 50px;
+}
+
+h1{
+  color: black;
+  font-size: 30px;
+  font-family: 'Roboto Slab', serif
+}
+
+.bottom{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.prof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 200px;
+  margin-bottom: 30px;
+  width: 700px;
+}
+
+.profTop{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.profBottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.profBottom button {
+  flex: 1;
+  height: 50px; /* optional, adjust as needed */
+  border: none;
+  background-color: white; /* optional, set the desired background color */ /* optional, set the desired font size */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  font-size: 15px;
+  border-radius: 20px;
+}
+
+h4{
+  font-family: 'roboto slab', serif;
+  padding: 0;
+  margin: 0;
+}
+
+.imgName{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 50px;
+}
+
+.circular-image {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.circular-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.bio{
+  padding: 20px;
+  font-size: 15px;
+  font-family: 'roboto slab', serif;
+}
+
+.name{
+  font-size: 18px;
+  font-family: 'roboto slab', serif;
+  font-weight: 800;
+}
+
+.btn-group{
+  width: 200px;
+}
+
+.btn-group button {
+  background-color: #ffffff; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: black; /* White text */
+  padding: 10px 24px; /* Some padding */
+  margin: 3px;
+  cursor: pointer; /* Pointer/hand icon */
+  font-size: 20px;
+  border-radius: 20px;
+  width: 100%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #b9bab9;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  border-radius: 10px;
+  background-color: blue;
+  margin: 10px;
+}
+
+.button button {
+  background-color: #ffffff; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: black; /* White text */
+  padding: 10px 24px; /* Some padding */
+  margin: 3px;
+  cursor: pointer; /* Pointer/hand icon */
+  font-size: 20px;
+  border-radius: 20px;
+  width: 100%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+
