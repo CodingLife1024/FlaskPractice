@@ -1,4 +1,4 @@
-/* body, html{
+body, html{
     background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
 }
 
@@ -51,101 +51,25 @@
     overflow: hidden;
   }
   
-  li a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    padding: 15px;
-    font-size: 25px;
-    font-family:  'Roboto Slab', serif;
-    text-decoration: none;
-    background-color: #DBDBDB;
-  }
-  
-  li a.active {
-    background-color: #04AA6D;
-    color: white;
-  }
-  
-  li a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-  }
-   */
-
-   body, html{
-    background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
+li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  padding: 15px;
+  font-size: 25px;
+  font-family:  'Roboto Slab', serif;
+  text-decoration: none;
+  background-color: #DBDBDB;
 }
-
-.container{
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
-    padding: 1%;
+  
+li a.active {
+  background-color: #04AA6D;
+  color: white;
 }
-
-.top{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    height: 20%;
-    background-color: transparent;
+  
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
 }
-
-.appname{
-    color: black;
-    font-size: 60px;
-    font-family: 'Roboto Slab', serif;
-}
-
-   .navbar {
-    background-color: transparent;
-    padding: 0;
-    margin-top: 4%;
-    width: fit-content;
-    height: fit-content;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: fit-content;
-    width: fit-content;
-    background-color: transparent;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  
-  li {
-    width: 250px;
-    height: 45px;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  
-  li a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    padding: 15px;
-    font-size: 25px;
-    font-family:  'Roboto Slab', serif;
-    text-decoration: none;
-    background-color: #DBDBDB;
-  }
-  
-  li a.active {
-    background-color: #04AA6D;
-    color: white;
-  }
-  
-  li a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-  }
   

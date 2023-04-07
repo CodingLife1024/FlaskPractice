@@ -52,7 +52,7 @@ def login():
 
 @app.route("/popular")
 def popular():
-    return 'popupal'
+    return render_template('popular.html')
 
 @app.route("/timeline")
 def timeline():
@@ -67,8 +67,8 @@ def profile():
     return 'timeline'
 
 @app.route("/create")
-def exp():
-    return render_template('pop.html')
+def create():
+    return "45345456"
 
 if __name__ == '__main__':
     app.run(debug=True)
