@@ -29,11 +29,6 @@ def register():
     # If the request method is GET, return the registration form
         return render_template('register.html')
 
-
-@app.route('/success')
-def success():
-    return 'Registration successful!'
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -52,7 +47,8 @@ def login():
             return render_template('login.html', error=error)
     
     # if the request method is GET, return the login form
-    return render_template('login.html')
+    else:
+        return render_template('login.html')
 
 @app.route("/popular")
 def popular():
