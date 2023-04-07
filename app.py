@@ -24,7 +24,7 @@ def register():
             return redirect(url_for('register'))
         else:
         # Redirect to a home page
-            return redirect(url_for('home'))
+            return redirect(url_for('timeline'))
     else:
     # If the request method is GET, return the registration form
         return render_template('register.html')
@@ -40,7 +40,7 @@ def login():
         
         if username == 'example' and password == 'password':
             # redirect to a success page if the user is authenticated
-            return redirect(url_for('home'))
+            return redirect(url_for('timeline'))
         else:
             # return an error message if the user is not authenticated
             error = 'Invalid username or password. Please try again.'
@@ -56,11 +56,11 @@ def popular():
 
 @app.route("/timeline")
 def timeline():
-    return 'timeline'
+    return render_template('timeline.html')
 
 @app.route("/search")
 def search():
-    return 'timeline'
+    return render_template('search.html')
 
 @app.route("/profile")
 def profile():
