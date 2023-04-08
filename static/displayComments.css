@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600;700&display=swap');
+
+.com21{
+    padding-left: 100px;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    width: 50%;
+    margin-left: 50px;
+  }
+
+.imm11{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: black;
+    margin-right: 20px;
+}
+
+.imm11 img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+.imlike{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: transparent;
+    margin-right: 20px;
+}
+
+.imlike img{
+    height: 80%;
+    width: 80%;
+    object-fit: cover;
+  }
+
+.imdislike{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: transparent;
+    margin-right: 20px;
+}
+
+.imdislike img{
+    height: 80%;
+    width: 80%;
+    object-fit: cover;
+  }
+
+.com21{
+    padding-left: 100px;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    width: 50%;
+    margin-left: 50px;
+}
+
+.comtext{
+    
+    font-size: 18px;
+    font-family: 'roboto slab', serif;
+    font-weight: 800;
+}
+
+.nolikes{
+    
+    font-size: 18px;
+    font-family: 'roboto slab', serif;
+    font-weight: 800;
+}
+
+.nodislikes{
+    
+    font-size: 18px;
+    font-family: 'roboto slab', serif;
+    font-weight: 800;
+}
+
+.fullbox{
+    background-color: rgba(250, 235, 215, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid blue;
+}
+
+.lldd{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.lldd > div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.loweup{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+body, html{
+  background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
+  padding: 1%;
+}
+
+.top{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  height: 20%;
+  background-color: transparent;
+  margin-bottom: 50px;
+}
+
+h1{
+  color: black;
+  font-size: 30px;
+  font-family: 'Roboto Slab', serif
+}
+
+.bottom{
+  display: flex;
+  width: 100%;
+}
+
+.btn-group{
+  width: 200px;
+}
+
+.btn-group button {
+  background-color: #ffffff; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: black; /* White text */
+  padding: 10px 24px; /* Some padding */
+  margin: 3px;
+  cursor: pointer; /* Pointer/hand icon */
+  font-size: 20px;
+  border-radius: 20px;
+  width: 100%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #b9bab9;
+}

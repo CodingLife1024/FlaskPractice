@@ -96,7 +96,7 @@ def create():
 
 @app.route('/comments', methods=['GET', 'POST'])
 def comments():
-    return "commmmmm"
+    return render_template('displayComments.html')
 
 @app.route('/comments/new', methods=['GET', 'POST'])
 def index():
