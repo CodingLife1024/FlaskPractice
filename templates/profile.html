@@ -9,7 +9,12 @@
     <body>
         <div class="container">
             <div class="top">
-                <h1>Tesseract</h1>
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='logo.png') }} " alt="logo">
+                </div>
+                <div class="titl">
+                    <h1>Tesseract</h1>
+                </div>
             </div>
             <div class="bottom">
                 <div class="btn-group">
@@ -47,6 +52,7 @@
                             <a style="text-decoration: none" href="{{ url_for('profilefollowing') }}"><h4>Following</h4></a>
                         </button>
                     </div>
+                    <hr>
                     <div class="butto">
                         <button><a style="text-decoration: none" href="{{ url_for('create') }}"><span>Create New Post</span></a></button>
                     </div>
