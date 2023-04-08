@@ -82,9 +82,17 @@ def profilefollowing():
 def profileposts():
     return render_template("profileposts.html")
 
-@app.route("/create")
+@app.route("/profile/create", methods=['GET', 'POST'])
 def create():
-    return "45345456"
+    if request.method == 'POST':
+        if request.form['submit_button'] == 'submit':
+            # do something with submitted data
+            return "Comment Submitted"
+        elif request.form['submit_button'] == 'discard':
+            # discard submitted data
+            return "Comment Discarded"
+    else:
+        return render_template('newPost.html')
 
 @app.route('/comments', methods=['GET', 'POST'])
 def comments():
