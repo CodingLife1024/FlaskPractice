@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Search</title>
+        <title>Profile Posts</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='follow.css') }}">
     </head>
     <body>
         <div class="container">
@@ -21,13 +21,7 @@
                     <button><a style="text-decoration: none" href="{{ url_for('profile') }}"><span>Profile</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
                 </div>
-                <div class="searchbar">
-                    <input type="search" id="searchresults" name="searchresults">
-                    <input type="submit">
-                </div>
-                <div class="result">
-
-                </div>
+                
             </div>
         </div>
     </body>

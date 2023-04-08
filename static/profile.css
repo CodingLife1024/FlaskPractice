@@ -70,7 +70,19 @@ h1{
   height: 60px;
   font-size: 15px;
   border-radius: 20px;
+  border: 1px solid green;
+  transition: background-color 0.1s ease-in-out, color 0.3s ease-in-out;
 }
+
+.profBottom button:hover{
+  background-color: rgba(91, 182, 247, 0.653);
+}
+
+.profBottom button:active{
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
 
 h4{
   font-family: 'roboto slab', serif;

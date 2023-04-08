@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Search</title>
+        <title>comments_page</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='addComments.css') }}">
     </head>
     <body>
         <div class="container">
@@ -21,12 +21,17 @@
                     <button><a style="text-decoration: none" href="{{ url_for('profile') }}"><span>Profile</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
                 </div>
-                <div class="searchbar">
-                    <input type="search" id="searchresults" name="searchresults">
-                    <input type="submit">
-                </div>
-                <div class="result">
-
+                <div class="postComment">
+                    <div class="heading"><h2>Add a new Comment</h2></div>
+                    <div class="new">
+                        <textarea id="newComment" name="newComment" placeholder="Add a new comment"></textarea>
+                        <form method="post" action="{{ url_for('comments') }}">
+                            <div class="buttons">
+                                <input type="submit" name="submit_button" value="Submit">
+                                <input type="submit" name="submit_button" value="Discard">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
