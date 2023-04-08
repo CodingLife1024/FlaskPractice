@@ -2,6 +2,7 @@
 
 body, html{
   background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
+  font-family: 'roboto slab', serif;
 }
 
 .container{
@@ -72,26 +73,28 @@ body, html{
   background-color: #b9bab9;
 }
 
-.postComment{
+.createPost{
     width: 50%;
     margin-left: 100px;
     padding: 30px;
     background-color: transparent;
+    border: 2px solid green;
+    border-radius: 20px;
 }
 
 textarea {
-    resize: none; /* disable user resizing */
-    height: 100px; /* set a minimum height */
-    /* overflow-y: scroll; */
+    resize: none;
+    height: 100px;
     border-radius: 15px;
     width: 90%;
     padding: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
     font-size: 20px;
     font-family: 'roboto slab', serif;
-}
+} 
 
-.postComment .new input[type="submit"] {
+.createPost .new input[type="submit"] {
   background-color: #3498db;
   color: #fff;
   padding: 5px 10px;
@@ -113,7 +116,26 @@ h2{
     color: black;
 }
 
-.postComment .new input[type="submit"]:hover,
-.postComment .new input[type="button"]:hover {
+.createPost .new input[type="submit"]:hover,
+.createPost .new input[type="button"]:hover {
   background-color: #2980b9;
 }
+
+.custom-file-upload {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #0069d9;
+  }
+  
+  .custom-file-upload:active {
+    background-color: #005cbf;
+  }
+  

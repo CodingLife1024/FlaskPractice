@@ -27,11 +27,11 @@
                     <button><a style="text-decoration: none" href="{{ url_for('profile') }}"><span>Profile</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
                 </div>
-                <div class="create-post">
-                    <div class="heading"><h2>Create a new post</h2></div>
+                <div class="createPost">
+                    <div class="heading"><h2>Create a New Post !!!</h2></div>
                         <div class="new">
-                            <form action="upload.php" method="post" enctype="multipart/form-data">
-                                <label for="image-upload">Upload Image</label>
+                            <form method="post" action="upload.php" method="post" enctype="multipart/form-data">
+                                <label for="image-upload"><h3>Upload Image</h3></label>
                                 <input type="file" name="image-upload" id="image-upload">
                                 <!-- <input type="submit" value="Upload"> -->
                             </form>

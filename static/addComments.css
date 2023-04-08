@@ -77,6 +77,8 @@ h1{
     margin-left: 100px;
     padding: 30px;
     background-color: transparent;
+    border: 2px solid green;
+    border-radius: 20px;
 }
 
 textarea {
