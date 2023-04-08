@@ -26,7 +26,35 @@
                     <button><a style="text-decoration: none" href="{{ url_for('profile') }}"><span>Profile</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
                 </div>
-                <div class="postts"></div>
+                <div class="postts">
+                    <div class="nameDate">
+                        <div class="pp">
+                            <img src="{{ url_for('static', filename='naru.jpg') }}">
+                        </div>
+                        <div class="name"><h2>Uzumaki Naruto</h2></div>
+                        <div class="dateTime"><h3>2023-03-03 15:13:00</h3> </div>
+                    </div>
+                    <div class="pic">
+                        <img src="{{ url_for('static', filename='kanishka.jpeg') }}">
+                    </div>
+                    <div class="content">
+                        <h2>Happy 124th birthday</h2>
+                    </div>
+                    <div class="likeDislike">
+                        <div class="likes">
+                            <img src="{{ url_for('static', filename='like_photo.png') }}">
+                            <div class="num"><h4>12</h4></div>
+                        </div>
+                        <div class="dislikes">
+                            <img src="{{ url_for('static', filename='dislike_pic.png') }}">
+                            <div class="num"><h4>15</h4></div>
+                        </div>
+                        <div class="comments">
+                            <img src="{{ url_for('static', filename='Comment.jpg') }}">
+                            <div class="num"><h4>129</h4></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

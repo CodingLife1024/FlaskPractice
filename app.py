@@ -1,4 +1,10 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
+import sqlite3
+
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
@@ -109,6 +115,18 @@ def index():
             return "Comment Discarded"
     else:
         return render_template('addComments.html')
+
+
+
+
+@app.route('/exp')
+def inde():
+    conn = get_db_connection()
+    posts = conn.execute('SELECT * FROM posts').fetchall()
+    conn.close()
+    return render_template('index.html', posts=posts)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

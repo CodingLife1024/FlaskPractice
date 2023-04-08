@@ -73,9 +73,76 @@ h1{
 }
 
 .postts{
-  height: 500px;
+  height: fit-content;
   margin-left: 150px;
   margin-right: 50px;
-  background-color: blue;
+  background-color: rgb(250, 250, 155);
+  border-radius: 20px;
   width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.nameDate{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.pp {
+  height: 30px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+.pp img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.pic{
+  width: 90%;
+  overflow: hidden;
+}
+
+.pic img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.likeDislike{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.likeDislike > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 30px;
+}
+
+.likeDislike > div > img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 50px;
+}
+
+.content{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }

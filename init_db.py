@@ -1,23 +1,20 @@
-import mysql.connector
+import sqlite3
 
-# Connect to the MySQL server
-connection = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Riddhi@2003",
-    database="Tesser",
-)
+connection = sqlite3.connect('database.db')
 
-# Read the Terrer.sql file and execute its contents
+
 with open('Tesser.sql') as f:
-    commands = f.read().split(';')
-    for command in commands:
-        connection.cursor().execute(command)
+    connection.executescript(f.read())
 
-# Insert a sample user into the user_info table
 cur = connection.cursor()
-cur.execute("INSERT INTO Tesser.user_info (username, pass_word, bio) VALUES (%s, %s, %s)", ('nickey', 'hithere', 'animal lover'))
-connection.commit()
 
-# Close the connection
+cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+            ('First Post', 'Content for the first post')
+            )
+
+cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+            ('Second Post', 'Content for the second post')
+            )
+
+connection.commit()
 connection.close()

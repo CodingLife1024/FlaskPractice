@@ -2,13 +2,22 @@
 
 -- CREATE DATABASE Tesser;
 
-CREATE TABLE user_info (
-    user_id INT(200) NOT NULL AUTO_INCREMENT,
-    username VARCHAR(200) NOT NULL,
-    pass_word VARCHAR(200) NOT NULL,
-    bio VARCHAR(200) NOT NULL,
-    PRIMARY KEY (user_id)
+DROP TABLE IF EXISTS posts;
+
+CREATE TABLE posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL
 );
+
+-- CREATE TABLE user_info (
+--     user_id INT(200) NOT NULL AUTO_INCREMENT,
+--     username VARCHAR(200) NOT NULL,
+--     pass_word VARCHAR(200) NOT NULL,
+--     bio VARCHAR(200) NOT NULL,
+--     PRIMARY KEY (user_id)
+-- );
 
 -- INSERT INTO Tesser.user_info (username, pass_word, bio) 
 -- VALUES 
