@@ -34,7 +34,7 @@ def register():
     else:
     # If the request method is GET, return the registration form
         return render_template('register.html')
-
+    
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -99,6 +99,11 @@ def create():
             return "Comment Discarded"
     else:
         return render_template('newPost.html')
+
+@app.route('/profile/editProfile')
+def edit_profile():
+    return render_template('editProfile.html')
+
 
 @app.route('/comments', methods=['GET', 'POST'])
 def comments():
