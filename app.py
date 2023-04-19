@@ -1,10 +1,33 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
 import sqlite3
+from flask import session
 
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
+
+def add_user_to_database(username, password):
+    # Open a connection to the database
+    conn = sqlite3.connect('database.db')
+
+    # Create a cursor object
+    cursor = conn.cursor()
+
+    # Define a SQL statement to insert a new row into the user_info table
+    sql = "INSERT INTO user_info (username, pass_word) VALUES (?, ?)"
+
+    # Define a tuple of values to insert
+    values = (username, password)
+
+    # Execute the statement with the values tuple
+    cursor.execute(sql, values)
+
+    # Commit the transaction
+    conn.commit()
+
+    # Close the connection
+    conn.close()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
@@ -30,6 +53,7 @@ def register():
             return redirect(url_for('register'))
         else:
         # Redirect to a home page
+            add_user_to_database(username, password)
             return redirect(url_for('timeline'))
     else:
     # If the request method is GET, return the registration form
@@ -40,11 +64,18 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        
+
         # perform validation and authentication here
         # for example, check if username and password match a user in a database
-        
-        if username == 'example' and password == 'password':
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        c.execute('SELECT * FROM user_info WHERE username = ? AND pass_word = ?', (username, password))
+        user = c.fetchone()
+
+        if user:
+            # set the user_id in the session
+            session['user_id'] = user[0]
+
             # redirect to a success page if the user is authenticated
             return redirect(url_for('timeline'))
         else:
@@ -55,6 +86,7 @@ def login():
     # if the request method is GET, return the login form
     else:
         return render_template('login.html')
+
 
 @app.route("/popular", methods=['GET', 'POST'])
 def popular():
