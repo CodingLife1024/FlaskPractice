@@ -163,6 +163,26 @@ def inde():
     conn.close()
     return render_template('index.html', posts=posts)
 
+@app.route('/create/', methods=('GET', 'POST'))
+def creat():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+
+        if not title:
+            flash('Title is required!')
+        elif not content:
+            flash('Content is required!')
+        else:
+            conn = get_db_connection()
+            conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
+                         (title, content))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('login'))
+
+    return render_template('create.html')
+
 
 
 
