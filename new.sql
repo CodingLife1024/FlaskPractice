@@ -10,11 +10,10 @@ CREATE TABLE user_info (
     pic LONGBLOB NOT NULL DEFAULT "static/riddhi.jpeg"
 );
 
-CREATE TABLE posts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    title TEXT NOT NULL,
-    content TEXT NOT NULL,
+CREATE TABLE users (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    pass_word TEXT NOT NULL,
     bio VARCHAR(200) NOT NULL DEFAULT "",
     pic LONGBLOB NOT NULL DEFAULT "static/riddhi.jpeg"
 );

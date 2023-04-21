@@ -8,11 +8,11 @@
 
 # cur = connection.cursor()
 
-# # cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+# # cur.execute("INSERT INTO users (username, pass_word) VALUES (?, ?)",
 # #             ('First Post', 'Content for the first post')
 # #             )
 
-# # cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+# # cur.execute("INSERT INTO users (username, pass_word) VALUES (?, ?)",
 # #             ('Second Post', 'Content for the second post')
 # #             )
 
@@ -30,9 +30,9 @@ with open('new.sql') as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)", ("Riddhi", "Riddhi"))
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)", ("Mrunal", "Mrunal"))
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)", ("Kanu", "Kanu"))
+cur.execute("INSERT INTO users (username, pass_word) VALUES (?, ?)", ("Riddhi", "Riddhi"))
+cur.execute("INSERT INTO users (username, pass_word) VALUES (?, ?)", ("Mrunal", "Mrunal"))
+cur.execute("INSERT INTO users (username, pass_word) VALUES (?, ?)", ("Kanu", "Kanu"))
 
 connection.commit()
 connection.close()

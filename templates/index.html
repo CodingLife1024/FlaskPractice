@@ -1,13 +1,27 @@
-{% extends 'base.html' %}
-
-{% block content %}
+<!-- {% block content %}
     <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
-    {% for post in posts %}
+    {% for post in users %}
         <a href="#">
-            <h2>{{ post['title'] }}</h2>
+            <h2>{{ post['username'] }}</h2>
         </a>
-        <span>{{ post['created'] }}</span>
-        <span>{{ post['password'] }}</span>
+        <span>{{ post['pass_word'] }}</span>
+        <span>{{ post['bio'] }}</span>
         <hr>
     {% endfor %}
-{% endblock %}
+{% endblock %} -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to FlaskBlog</title>
+</head>
+<body>
+    <h1>Welcome to FlaskBlog</h1>
+    {% for post in posts %}
+        <h2>{{ post[1] }}</h2>
+        <span>{{ post[2] }}</span>
+        <span>{{ post[3] }}</span>
+        <hr>
+    {% endfor %}
+</body>
+</html>

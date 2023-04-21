@@ -62,20 +62,25 @@ def home():
 @app.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
-        title = request.form['title']
-        content = request.form['content']
+        username = request.form['username']
+        pass_word = request.form['pass_word']
 
-        if not title:
-            flash('Title is required!')
-        elif not content:
-            flash('Content is required!')
+        if not username:
+            flash('Username is required!')
+        elif not pass_word:
+            flash('Password is required!')
         else:
             conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
-                         (title, content))
+            existing_user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+            if existing_user:
+                flash('Username already exists!')
+                return render_template('register.html')
+            else:
+                conn.execute('INSERT INTO users (username, pass_word) VALUES (?, ?)',
+                            (username, pass_word))
             conn.commit()
             conn.close()
-            return redirect(url_for('index'))
+            return render_template('index.html')
 
     return render_template('register.html')
 
@@ -84,13 +89,13 @@ def register():
 def login():
     if request.method == 'POST':
         username = request.form['username']
-        password = request.form['password']
+        pass_word = request.form['pass_word']
 
         # perform validation and authentication here
         # for example, check if username and password match a user in a database
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
-        c.execute('SELECT * FROM user_info WHERE username = ? AND pass_word = ?', (username, password))
+        c.execute('SELECT * FROM user_info WHERE username = ? AND pass_word = ?', (username, pass_word))
         user = c.fetchone()
 
         if user:
@@ -98,7 +103,7 @@ def login():
             session['user_id'] = user[0]
 
             # redirect to a success page if the user is authenticated
-            return redirect(url_for('timeline'))
+            return redirect('/exp')
         else:
             # return an error message if the user is not authenticated
             error = 'Invalid username or password. Please try again.'
@@ -180,7 +185,7 @@ def index():
 @app.route('/exp')
 def inde():
     conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM posts').fetchall()
+    posts = conn.execute('SELECT * FROM users').fetchall()
     conn.close()
     return render_template('index.html', posts=posts)
 
