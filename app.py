@@ -41,23 +41,44 @@ def welcome():
 def home():
     return render_template('home.html')
 
-@app.route("/register", methods=['GET', 'POST'])
+# @app.route("/register", methods=['GET', 'POST'])
+# def register():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']
+        
+#         # Check if username and password are not empty
+#         if not username or not password:
+#             flash('Please enter both username and password.')
+#             return redirect(url_for('register'))
+#         else:
+#         # Redirect to a home page
+#             add_user_to_database(username, password)
+#             return redirect(url_for('timeline'))
+#     else:
+#     # If the request method is GET, return the registration form
+#         return render_template('register.html')
+
+@app.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        
-        # Check if username and password are not empty
-        if not username or not password:
-            flash('Please enter both username and password.')
-            return redirect(url_for('register'))
+        title = request.form['title']
+        content = request.form['content']
+
+        if not title:
+            flash('Title is required!')
+        elif not content:
+            flash('Content is required!')
         else:
-        # Redirect to a home page
-            add_user_to_database(username, password)
-            return redirect(url_for('timeline'))
-    else:
-    # If the request method is GET, return the registration form
-        return render_template('register.html')
+            conn = get_db_connection()
+            conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
+                         (title, content))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
+
+    return render_template('register.html')
+
     
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -163,25 +184,25 @@ def inde():
     conn.close()
     return render_template('index.html', posts=posts)
 
-@app.route('/create/', methods=('GET', 'POST'))
-def creat():
-    if request.method == 'POST':
-        title = request.form['title']
-        content = request.form['content']
+# @app.route('/create/', methods=('GET', 'POST'))
+# def creat():
+#     if request.method == 'POST':
+#         title = request.form['title']
+#         content = request.form['content']
 
-        if not title:
-            flash('Title is required!')
-        elif not content:
-            flash('Content is required!')
-        else:
-            conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
-                         (title, content))
-            conn.commit()
-            conn.close()
-            return redirect(url_for('login'))
+#         if not title:
+#             flash('Title is required!')
+#         elif not content:
+#             flash('Content is required!')
+#         else:
+#             conn = get_db_connection()
+#             conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
+#                          (title, content))
+#             conn.commit()
+#             conn.close()
+#             return redirect(url_for('login'))
 
-    return render_template('create.html')
+#     return render_template('create.html')
 
 
 
