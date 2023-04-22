@@ -115,24 +115,25 @@ def create():
 
 @app.route('/profile/<int:user_id>/editProfile', methods=['GET', 'POST'])
 def edit_profile(user_id):
-    conn = sqlite3.connect('database.db')
-    c = conn.cursor()
-    c.execute('SELECT * FROM users WHERE user_id=?', (user_id,))
-    user = c.fetchone()
-    conn.close()
+    user = get_user(user_id)
 
     if request.method == 'POST':
+        pic = request.files['pic'].read() if 'pic' in request.files else None
         bio = request.form['bio']
-        pic = request.files['pic'].read() if 'pic' in request.files else user[4]
-        
-        conn = sqlite3.connect('database.db')
-        c = conn.cursor()
-        c.execute('UPDATE users SET bio=?, pic=? WHERE user_id=?', (bio, pic, user_id))
-        conn.commit()
-        conn.close()
-        return redirect(url_for('profile', user_id=user_id))
+
+        if not pic:
+            flash('Image is required!')
+        else:
+            conn = get_db_connection()
+            conn.execute('UPDATE users SET pic = ?, bio = ?'
+                         ' WHERE user_id = ?',
+                         (pic, bio, user_id))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('profile', user_id=user_id))
 
     return render_template('editProfile.html', user=user)
+
 
 
 
@@ -158,9 +159,9 @@ def index():
 @app.route('/exp')
 def inde():
     conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM users').fetchall()
+    users = conn.execute('SELECT * FROM users').fetchall()
     conn.close()
-    return render_template('index.html', posts=posts)
+    return render_template('index.html', users=users)
 
 # @app.route('/create/', methods=('GET', 'POST'))
 # def creat():
