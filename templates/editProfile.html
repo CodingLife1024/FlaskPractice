@@ -31,18 +31,18 @@
                     <div class="heading"><h2>Edit profile</h2></div>
                         <div class="new">
 
-                            <form method="post" enctype="multipart/form-data">
+                            <form method="post" enctype="multipart/form-data" id="myForm">
                                 <div class="form-group">
                                     <label for="pic">Profile Picture</label>
                                     <input type="file" name="pic" class="form-control-file" id="pic">
                                 </div>
                                 <div class="form-group">
-                                    <label for="bio">Bio</label>
-                                    <textarea name="bio" class="form-control">{{ user['bio'] }}</textarea>
+                                    <label for="bio"></label>
+                                    <textarea name="bio" class="form-control" placeholder="Add Bio">{{ user['bio'] }}</textarea>
                                 </div>
                                 <div class="buttons">
                                     <input type="submit" name="submit_button" value="Save">
-                                    <input type="submit" name="submit_button" value="Discard">
+                                    <input type="submit" name="submit_button" value="Discard" onclick="document.getElementById('myForm').reset();">
                                 </div>
                             </form>
 
