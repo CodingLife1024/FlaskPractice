@@ -21,7 +21,7 @@
                 <button><a style="text-decoration: none" href="{{ url_for('popular') }}"><span>Popular</span></a></button>
                 <button><a style="text-decoration: none" href="{{ url_for('timeline') }}"><span>Timeline</span></a></button>
                 <button><a style="text-decoration: none" href="{{ url_for('search') }}"><span>Search</span></a></button>
-                <button><a style="text-decoration: none" href="{{ url_for('profile', user_id=user[0]) }}"><span>{{ user[1] }}</span></a></button>
+                <button><a style="text-decoration: none" href="{{ url_for('profile', user_id = user['user_id']) }}"><span>{{ user[1] }}</span></a></button>
                 <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
             </div>
             <div class="prof">
@@ -43,20 +43,20 @@
                 <div class="profBottom">
                     <button>
                         <h4>12</h4>
-                        <a style="text-decoration: none" href="{{ url_for('profileposts') }}"><h4>Posts</h4></a>
+                        <a style="text-decoration: none" href="{{ url_for('profileposts', user_id = user['user_id']) }}"><h4>Posts</h4></a>
                     </button>
                     <button>
                         <h4>1200</h4>
-                        <a style="text-decoration: none" href="{{ url_for('profilefollowers') }}"><h4>Followers</h4></a>
+                        <a style="text-decoration: none" href="{{ url_for('profilefollowers', user_id = user['user_id']) }}"><h4>Followers</h4></a>
                     </button>
                     <button>
                         <h4>120</h4>
-                        <a style="text-decoration: none" href="{{ url_for('profilefollowing') }}"><h4>Following</h4></a>
+                        <a style="text-decoration: none" href="{{ url_for('profilefollowing', user_id = user['user_id']) }}"><h4>Following</h4></a>
                     </button>
                 </div>
                 <hr>
                 <div class="butto">
-                    <button><a style="text-decoration: none" href="{{ url_for('create') }}"><span>Create New Post</span></a></button>
+                    <button><a style="text-decoration: none" href="{{ url_for('create', user_id = user['user_id']) }}"><span>Create New Post</span></a></button>
                 </div>
             </div>
         </div>

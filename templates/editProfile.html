@@ -24,7 +24,7 @@
                     <button><a style="text-decoration: none" href="{{ url_for('popular') }}"><span>Popular</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('timeline') }}"><span>Timeline</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('search') }}"><span>Search</span></a></button>
-                    <button><a style="text-decoration: none" href="{{ url_for('profile') }}"><span>Profile</span></a></button>
+                    <button><a style="text-decoration: none" href="{{ url_for('profile', user_id = user['user_id']) }}"><span>{{ user[1] }}</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
                 </div>
                 <div class="createPost">
@@ -33,10 +33,9 @@
                             <form method="post" action="upload.php" method="post" enctype="multipart/form-data">
                                 <label for="image-upload"><h3>Upload Profile Picture</h3></label>
                                 <input type="file" name="image-upload" id="image-upload">
-                                <!-- <input type="submit" value="Upload"> -->
                             </form>
                             <textarea id="post content" name="post content" placeholder="Add Bio"></textarea>
-                            <form method="post" action="{{ url_for('profile') }}">
+                            <form method="post" action="{{ url_for('profile', user_id=user[0]) }}">
                                 <div class="buttons">
                                     <input type="submit" name="submit_button" value="Save">
                                     <input type="submit" name="submit_button" value="Discard">
