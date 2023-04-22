@@ -15,13 +15,16 @@
             <div class="formm">
                 <h2>Login</h2>
 	            <form action="{{ url_for('register') }}" method="POST">
-		            <input type="text" name="username" required placeholder="username" class="input-field">
-		            <input type="password" name="pass_word" required placeholder="password" class="input-field">
+		            <input type="text" name="username" required placeholder="username" value="{{ request.form['username'] }}" class="input-field">
+		            <input type="password" name="pass_word" required placeholder="password" value="{{ request.form['pass_word'] }}" class="input-field">
 		            <input type="submit" value="Login" class="submit-btn">
                     <div class="writing">
                         <h4>Not a registered user? <a href="{{ url_for('register') }}">Sign up!</a></h4>
                     </div>
 	            </form>
+                {% if error %}
+                    <p class="error"><strong>Error:</strong> {{ error }}
+                {% endif %}
             </div>
         </div>
     </div>

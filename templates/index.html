@@ -16,12 +16,9 @@
     <title>Welcome to FlaskBlog</title>
 </head>
 <body>
-    <h1>Welcome to FlaskBlog</h1>
     {% for post in posts %}
-        <h2>{{ post[1] }}</h2>
+        <h3>{{ post[1] }}</h3>
         <span>{{ post[2] }}</span>
-        <span>{{ post[3] }}</span>
-        <hr>
     {% endfor %}
 </body>
 </html>

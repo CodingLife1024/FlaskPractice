@@ -1,6 +1,5 @@
-from flask import Flask, render_template, url_for, flash, redirect, request
+from flask import Flask, render_template, url_for, flash, redirect, request, session
 import sqlite3
-from flask import session
 
 def get_db_connection():
     conn = sqlite3.connect('database.db')
@@ -41,26 +40,9 @@ def welcome():
 def home():
     return render_template('home.html')
 
-# @app.route("/register", methods=['GET', 'POST'])
-# def register():
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         password = request.form['password']
-        
-#         # Check if username and password are not empty
-#         if not username or not password:
-#             flash('Please enter both username and password.')
-#             return redirect(url_for('register'))
-#         else:
-#         # Redirect to a home page
-#             add_user_to_database(username, password)
-#             return redirect(url_for('timeline'))
-#     else:
-#     # If the request method is GET, return the registration form
-#         return render_template('register.html')
-
 @app.route('/register', methods=('GET', 'POST'))
 def register():
+    error = None
     if request.method == 'POST':
         username = request.form['username']
         pass_word = request.form['pass_word']
@@ -73,14 +55,14 @@ def register():
             conn = get_db_connection()
             existing_user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
             if existing_user:
-                flash('Username already exists!')
-                return render_template('register.html')
+                error = "Username already exists"
+                #return render_template('register.html', error=error)
             else:
                 conn.execute('INSERT INTO users (username, pass_word) VALUES (?, ?)',
                             (username, pass_word))
             conn.commit()
             conn.close()
-            return render_template('index.html')
+            return render_template('index.html', error=error)
 
     return render_template('register.html')
 

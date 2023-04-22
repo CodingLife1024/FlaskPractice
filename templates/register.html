@@ -22,6 +22,9 @@
                         <h4>Already have an account? <a href="{{ url_for('login') }}">Login!</a></h4>
                     </div>
 	            </form>
+                {% if error %}
+                    <p class="error"><strong>Error:</strong> {{ error }}
+                {% endif %}
             </div>
         </div>
     </div>
