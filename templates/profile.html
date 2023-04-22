@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css') }}"> 
-        <title>profile</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="top">
-                <div class="logo">
-                    <img src="{{ url_for('static', filename='logo.png') }} " alt="logo">
-                </div>
-                <div class="titl">
-                    <h1>Tesseract</h1>
-                </div>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css') }}"> 
+    <title>{{ user[1] }}'s Profile</title>
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }} " alt="logo">
             </div>
-            <div class="bottom">
-                <div class="btn-group">
-                    <button><a style="text-decoration: none" href="{{ url_for('popular') }}"><span>Popular</span></a></button>
-                    <button><a style="text-decoration: none" href="{{ url_for('timeline') }}"><span>Timeline</span></a></button>
-                    <button><a style="text-decoration: none" href="{{ url_for('search') }}"><span>Search</span></a></button>
-                    <button><a style="text-decoration: none" href="{{ url_for('profile') }}"><span>Profile</span></a></button>
-                    <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
-                </div>
-                <div class="prof">
-                    <div class="profTop">
-                        <div class="imgName">
-                            <a href="{{ url_for('edit_profile') }}">
-                                <div class="img circular-image">
-                                    <img src="{{ user['pic'] }}">
-                                </div>
-                            </a>
-                            <div class="name">
-                                <p>{{ user['username'] }}</p>
+            <div class="titl">
+                <h1>Tesseract</h1>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="btn-group">
+                <button><a style="text-decoration: none" href="{{ url_for('popular') }}"><span>Popular</span></a></button>
+                <button><a style="text-decoration: none" href="{{ url_for('timeline') }}"><span>Timeline</span></a></button>
+                <button><a style="text-decoration: none" href="{{ url_for('search') }}"><span>Search</span></a></button>
+                <button><a style="text-decoration: none" href="{{ url_for('profile', user_id=user[0]) }}"><span>{{ user[1] }}</span></a></button>
+                <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
+            </div>
+            <div class="prof">
+                <div class="profTop">
+                    <div class="imgName">
+                            <div class="img circular-image">
+                                <img src="{{ url_for('static', filename=user[4]) }}" alt="{{ user[1] }} profile pic">
                             </div>
+                        <a href="{{ url_for('edit_profile', user_id=user[0]) }}">
+                        <div class="name">
+                            <p>{{ user[1] }}</p>
                         </div>
-                        <div class="bio">
-                            <p>{{ user['bio'] }}</p>
-                        </div>
+                        </a>
                     </div>
-                    <div class="profBottom">
-                        <button>
-                            <h4>12</h4>
-                            <a style="text-decoration: none" href="{{ url_for('profileposts') }}"><h4>Posts</h4></a>
-                        </button>
-                        <button>
-                            <h4>1200</h4>
-                            <a style="text-decoration: none" href="{{ url_for('profilefollowers') }}"><h4>Followers</h4></a>
-                        </button>
-                        <button>
-                            <h4>120</h4>
-                            <a style="text-decoration: none" href="{{ url_for('profilefollowing') }}"><h4>Following</h4></a>
-                        </button>
-                    </div>
-                    <hr>
-                    <div class="butto">
-                        <button><a style="text-decoration: none" href="{{ url_for('create') }}"><span>Create New Post</span></a></button>
+                    <div class="bio">
+                        <p>{{ user[3] }}</p>
                     </div>
                 </div>
+                <div class="profBottom">
+                    <button>
+                        <h4>12</h4>
+                        <a style="text-decoration: none" href="{{ url_for('profileposts') }}"><h4>Posts</h4></a>
+                    </button>
+                    <button>
+                        <h4>1200</h4>
+                        <a style="text-decoration: none" href="{{ url_for('profilefollowers') }}"><h4>Followers</h4></a>
+                    </button>
+                    <button>
+                        <h4>120</h4>
+                        <a style="text-decoration: none" href="{{ url_for('profilefollowing') }}"><h4>Following</h4></a>
+                    </button>
+                </div>
+                <hr>
+                <div class="butto">
+                    <button><a style="text-decoration: none" href="{{ url_for('create') }}"><span>Create New Post</span></a></button>
+                </div>
             </div>
-        </div>   
-    </body>
+        </div>
+    </div>   
+</body>
 </html>

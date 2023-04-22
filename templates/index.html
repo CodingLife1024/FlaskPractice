@@ -13,12 +13,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to FlaskBlog</title>
+    <title>Users List</title>
 </head>
 <body>
-    {% for post in posts %}
-        <h3>{{ post[1] }}</h3>
-        <span>{{ post[2] }}</span>
+    {% for user in posts %}
+        <h3>{{ user[1] }}</h3>
+        <span>{{ user[2] }}</span>
+        <span>{{ user[0] }}</span>
+        <p>{{ user[3] }}</p>
     {% endfor %}
 </body>
 </html>

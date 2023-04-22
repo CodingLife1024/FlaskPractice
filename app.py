@@ -2,31 +2,9 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 import sqlite3
 
 def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
+    conn = sqlite3.connect('database.db') 
+    conn.row_factory = sqlite3.Row 
     return conn
-
-def add_user_to_database(username, password):
-    # Open a connection to the database
-    conn = sqlite3.connect('database.db')
-
-    # Create a cursor object
-    cursor = conn.cursor()
-
-    # Define a SQL statement to insert a new row into the user_info table
-    sql = "INSERT INTO user_info (username, pass_word) VALUES (?, ?)"
-
-    # Define a tuple of values to insert
-    values = (username, password)
-
-    # Execute the statement with the values tuple
-    cursor.execute(sql, values)
-
-    # Commit the transaction
-    conn.commit()
-
-    # Close the connection
-    conn.close()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
@@ -69,29 +47,44 @@ def register():
     
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # if request.method == 'POST':
+    #     username = request.form['username']
+    #     pass_word = request.form['pass_word']
+
+    #     # perform validation and authentication here
+    #     # for example, check if username and password match a user in a database
+    #     conn = sqlite3.connect('database.db')
+    #     c = conn.cursor()
+    #     c.execute('SELECT * FROM user_info WHERE username = ? AND pass_word = ?', (username, pass_word))
+    #     user = c.fetchone()
+
+    #     if user:
+    #         # set the user_id in the session
+    #         session['user_id'] = user[0]
+
+    #         # redirect to a success page if the user is authenticated
+    #         return redirect('/exp')
+    #     else:
+    #         # return an error message if the user is not authenticated
+    #         error = 'Invalid username or password. Please try again.'
+    #         return render_template('login.html', error=error)
+    
+    # # if the request method is GET, return the login form
+    # else:
+    #     return render_template('login.html')
     if request.method == 'POST':
         username = request.form['username']
-        pass_word = request.form['pass_word']
-
-        # perform validation and authentication here
-        # for example, check if username and password match a user in a database
+        password = request.form['password']
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
-        c.execute('SELECT * FROM user_info WHERE username = ? AND pass_word = ?', (username, pass_word))
-        user = c.fetchone()
-
-        if user:
-            # set the user_id in the session
-            session['user_id'] = user[0]
-
-            # redirect to a success page if the user is authenticated
-            return redirect('/exp')
+        c.execute('SELECT user_id FROM users WHERE username=? AND pass_word=?', (username, password))
+        user_id = c.fetchone()
+        conn.close()
+        if user_id:
+            session['user_id'] = user_id[0]
+            return redirect('/profile')
         else:
-            # return an error message if the user is not authenticated
-            error = 'Invalid username or password. Please try again.'
-            return render_template('login.html', error=error)
-    
-    # if the request method is GET, return the login form
+            return 'Invalid username or password.'
     else:
         return render_template('login.html')
 
@@ -108,13 +101,19 @@ def timeline():
 def search():
     if request.method == 'POST':
         search_results = request.form['searchresults']
-        # do something with the search results
         return f'Search results for "{search_results}"'
     return render_template('search.html')
 
-@app.route("/profile", methods=['GET', 'POST'])
-def profile():
-    return render_template('profile.html')
+@app.route("/profile/<int:user_id>", methods=['GET', 'POST'])
+def profile(user_id):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_id,))
+    user = cursor.fetchone()
+    conn.close()
+    if user is None:
+        return 'User not found'
+    return render_template('profile.html', user=user)
 
 @app.route("/profile/followers", methods=['GET', 'POST'])
 def profilefollowers():
@@ -140,9 +139,27 @@ def create():
     else:
         return render_template('newPost.html')
 
-@app.route('/profile/editProfile')
-def edit_profile():
-    return render_template('editProfile.html')
+@app.route('/profile/editProfile/<int:user_id>', methods=['GET', 'POST'])
+def edit_profile(user_id):
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM users WHERE user_id=?', (user_id,))
+    user = c.fetchone()
+    conn.close()
+
+    if request.method == 'POST':
+        bio = request.form['bio']
+        pic = request.files['pic'].read() if 'pic' in request.files else user[4]
+        
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        c.execute('UPDATE users SET bio=?, pic=? WHERE user_id=?', (bio, pic, user_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('profile', user_id=user_id))
+
+    return render_template('editProfile.html', user=user)
+
 
 
 @app.route('/comments', methods=['GET', 'POST'])
