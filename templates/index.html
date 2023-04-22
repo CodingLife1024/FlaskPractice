@@ -16,11 +16,12 @@
     <title>Users List</title>
 </head>
 <body>
-    {% for user in posts %}
-        <h3>{{ user[1] }}</h3>
-        <span>{{ user[2] }}</span>
-        <span>{{ user[0] }}</span>
-        <p>{{ user[3] }}</p>
+    {% for user in users %}
+        <h3>Username: {{ user['username'] }}</h3>
+        <span>Password: {{ user['pass_word'] }}</span><br>
+        <span>Userid: {{ user['user_id'] }}</span>
+        <p>Bio: {{ user['bio'] }}</p>
+        <img src="{{ url_for('static', filename=user['pic']) }}" alt="Profile Picture">
     {% endfor %}
 </body>
 </html>
