@@ -24,23 +24,23 @@ body, html{
 
 .logo{
     margin-right: 0;
-  }
+}
   
-  .logo img {
+.logo img {
     height: 100px;
     margin-right: 20px;
-  }
+}
   
-  .titl{
+.titl{
     margin: 0;
-  }
+}
   
-  h1{
+h1{
       color: black;
       font-size: 40px;
       font-family: 'Roboto Slab', serif;
       margin: 0;
-  }
+}
 
 .bottom{
   display: flex;
