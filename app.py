@@ -121,16 +121,13 @@ def edit_profile(user_id):
         pic = request.files['pic'].read() if 'pic' in request.files else None
         bio = request.form['bio']
 
-        if not pic:
-            flash('Image is required!')
-        else:
-            conn = get_db_connection()
-            conn.execute('UPDATE users SET pic = ?, bio = ?'
+        conn = get_db_connection()
+        conn.execute('UPDATE users SET pic = ?, bio = ?'
                          ' WHERE user_id = ?',
                          (pic, bio, user_id))
-            conn.commit()
-            conn.close()
-            return redirect(url_for('profile', user_id=user_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('profile', user_id=user_id))
 
     return render_template('editProfile.html', user=user)
 
