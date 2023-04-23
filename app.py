@@ -27,28 +27,18 @@ def welcome():
 
 @app.route('/register', methods=('GET', 'POST'))
 def register():
-    error = None
     if request.method == 'POST':
         username = request.form['username']
         pass_word = request.form['pass_word']
-
-        if not username:
-            flash('Username is required!')
-        elif not pass_word:
-            flash('Password is required!')
-        else:
-            conn = get_db_connection()
-            existing_user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
-            if existing_user:
-                error = "Username already exists"
-            else:
-                conn.execute('INSERT INTO users (username, pass_word) VALUES (?, ?)',
-                            (username, pass_word))
-            conn.commit()
-            conn.close()
-            return redirect(url_for('login'))
-
-    return render_template('register.html')
+        conn = get_db_connection()
+        existing_user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+        conn.execute('INSERT INTO users (username, pass_word) VALUES (?, ?)',
+                        (username, pass_word))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('login'))
+    else:
+        return redirect(url_for('register'))
 
     
 @app.route('/login', methods=['GET', 'POST'])
@@ -63,11 +53,11 @@ def login():
         conn.close()
         if user_id:
             session['user_id'] = user_id[0]
-            return redirect('/profile')
+            return redirect(url_for('profile', user_id=user_id[0]))
         else:
             return 'Invalid username or password.'
     else:
-        return render_template('login.html')
+        return render_template('register.html')
 
 
 @app.route("/popular/<int:user_id>", methods=['GET', 'POST'])
