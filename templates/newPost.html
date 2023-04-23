@@ -31,15 +31,18 @@
                     <div class="heading"><h2>Create a New Post !!!</h2></div>
                         <div class="new">
 
-                            <form method="post" action="upload.php" method="post" enctype="multipart/form-data">
-                                <label for="image-upload"><h3>Upload Image</h3></label>
-                                <input type="file" name="image-upload" id="image-upload">
-                            </form>
-                            <textarea id="post content" name="post content" placeholder="Add description"></textarea>
-                            <form method="post" action="{{ url_for('profile') }}">
+                            <form method="post" enctype="multipart/form-data" id="myForm">
+                                <div class="form-group">
+                                    <label for="pic">Upload Image</label>
+                                    <input type="file" name="pic" class="form-control-file" id="pic">
+                                </div>
+                                <div class="form-group">
+                                    <label for="content"></label>
+                                    <textarea name="content" class="form-control" placeholder="Add post content"></textarea>
+                                </div>
                                 <div class="buttons">
-                                    <input type="submit" name="submit_button" value="Submit">
-                                    <input type="submit" name="submit_button" value="Discard">
+                                    <input type="submit" name="submit_button" value="Publish">
+                                    <input type="submit" name="submit_button" value="Discard" onclick="document.getElementById('myForm').reset();">
                                 </div>
                             </form>
                             

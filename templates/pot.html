@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Posts List</title>
+</head>
+<body>
+
+    {% for post in posts %}
+        <h3>Content: {{ post['content'] }}</h3>
+        <span>Postid: {{ post['post_id'] }}</span><br>
+        <span>Userid: {{ post['user_id'] }}</span><br>
+        <span>Time: {{ post['created'] }}</span><br>
+        <img src="{{ url_for('static', filename=post['pic']) }}" alt="Image Post">
+    {% endfor %}
+
+</body>
+</html>

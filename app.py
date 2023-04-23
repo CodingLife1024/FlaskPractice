@@ -103,19 +103,25 @@ def profilefollowing(user_id):
 
 @app.route("/profile/<int:user_id>/posts", methods=['GET', 'POST'])
 def profileposts(user_id):
-    return render_template("profileposts.html")
+    user = get_user(user_id)
+    return render_template("profileposts.html", user=user)
 
 @app.route("/profile/<int:user_id>/create", methods=['GET', 'POST'])
-def create():
+def create(user_id):
+    user = get_user(user_id)
+
     if request.method == 'POST':
-        if request.form['submit_button'] == 'submit':
-            # do something with submitted data
-            return "Comment Submitted"
-        elif request.form['submit_button'] == 'discard':
-            # discard submitted data
-            return "Comment Discarded"
-    else:
-        return render_template('newPost.html')
+        pic = request.files['pic'].read() if 'pic' in request.files else None
+        content = request.form['content']
+
+        conn = get_db_connection()
+        conn.execute('INSERT INTO posts (pic, content, user_id) VALUES (?, ?, ?)',
+                     (pic, content, user_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('profile', user_id=user_id))
+
+    return render_template('newPost.html', user=user)
 
 @app.route('/profile/<int:user_id>/editProfile', methods=['GET', 'POST'])
 def edit_profile(user_id):
@@ -141,10 +147,11 @@ def edit_profile(user_id):
 @app.route('/comments/<int:user_id>', methods=['GET', 'POST'])
 def comments(user_id):
     user=get_user(user_id)
-    return render_template('displayComments.html')
+    return render_template('displayComments.html', user=user)
 
-@app.route('/comments/new', methods=['GET', 'POST'])
-def index():
+@app.route('/comments/<int:user_id>/new', methods=['GET', 'POST'])
+def index(user_id):
+    user=get_user(user_id)
     if request.method == 'POST':
         if request.form['submit_button'] == 'submit':
             # do something with submitted data
@@ -153,7 +160,7 @@ def index():
             # discard submitted data
             return "Comment Discarded"
     else:
-        return render_template('addComments.html')
+        return render_template('addComments.html', user=user)
 
 
 
@@ -165,25 +172,12 @@ def inde():
     conn.close()
     return render_template('index.html', users=users)
 
-# @app.route('/create/', methods=('GET', 'POST'))
-# def creat():
-#     if request.method == 'POST':
-#         title = request.form['title']
-#         content = request.form['content']
-
-#         if not title:
-#             flash('Title is required!')
-#         elif not content:
-#             flash('Content is required!')
-#         else:
-#             conn = get_db_connection()
-#             conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
-#                          (title, content))
-#             conn.commit()
-#             conn.close()
-#             return redirect(url_for('login'))
-
-#     return render_template('create.html')
+@app.route('/pot')
+def ind():
+    conn = get_db_connection()
+    posts = conn.execute('SELECT * FROM posts').fetchall()
+    conn.close()
+    return render_template('pot.html', posts=posts)
 
 
 
