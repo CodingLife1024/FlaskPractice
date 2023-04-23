@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, flash, redirect, request, session
 import sqlite3
 from werkzeug.exceptions import abort
+import mysql.connector
 
 def get_db_connection():
     conn = sqlite3.connect('database.db') 
@@ -45,7 +46,7 @@ def register():
                             (username, pass_word))
             conn.commit()
             conn.close()
-            return render_template('index.html', error=error)
+            return redirect(url_for('login'))
 
     return render_template('register.html')
 
