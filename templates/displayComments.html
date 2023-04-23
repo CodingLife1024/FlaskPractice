@@ -15,9 +15,9 @@
             </div>
             <div class="bottom">
                 <div class="btn-group">
-                    <button><a style="text-decoration: none" href="{{ url_for('popular') }}"><span>Popular</span></a></button>
-                    <button><a style="text-decoration: none" href="{{ url_for('timeline') }}"><span>Timeline</span></a></button>
-                    <button><a style="text-decoration: none" href="{{ url_for('search') }}"><span>Search</span></a></button>
+                    <button><a style="text-decoration: none" href="{{ url_for('popular', user_id = user['user_id']) }}"><span>Popular</span></a></button>
+                    <button><a style="text-decoration: none" href="{{ url_for('timeline', user_id = user['user_id']) }}"><span>Timeline</span></a></button>
+                    <button><a style="text-decoration: none" href="{{ url_for('search', user_id = user['user_id']) }}"><span>Search</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('profile', user_id = user['user_id']) }}"><span>Profile</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
                 </div>

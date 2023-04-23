@@ -70,20 +70,23 @@ def login():
         return render_template('login.html')
 
 
-@app.route("/popular", methods=['GET', 'POST'])
-def popular():
-    return render_template('popular.html')
+@app.route("/popular/<int:user_id>", methods=['GET', 'POST'])
+def popular(user_id):
+    user = get_user(user_id)
+    return render_template('popular.html', user=user)
 
-@app.route("/timeline", methods=['GET', 'POST'])
-def timeline():
-    return render_template('timeline.html')
+@app.route("/timeline/<int:user_id>", methods=['GET', 'POST'])
+def timeline(user_id):
+    user = get_user(user_id)
+    return render_template('timeline.html', user=user)
 
-@app.route('/search', methods=['GET', 'POST'])
-def search():
+@app.route('/search/<int:user_id>', methods=['GET', 'POST'])
+def search(user_id):
+    user=get_user(user_id)
     if request.method == 'POST':
         search_results = request.form['searchresults']
         return f'Search results for "{search_results}"'
-    return render_template('search.html')
+    return render_template('search.html', user=user)
 
 @app.route("/profile/<int:user_id>", methods=['GET', 'POST'])
 def profile(user_id):
@@ -135,8 +138,9 @@ def edit_profile(user_id):
 
 
 
-@app.route('/comments', methods=['GET', 'POST'])
-def comments():
+@app.route('/comments/<int:user_id>', methods=['GET', 'POST'])
+def comments(user_id):
+    user=get_user(user_id)
     return render_template('displayComments.html')
 
 @app.route('/comments/new', methods=['GET', 'POST'])
