@@ -65,6 +65,13 @@ def login():
             return 'Invalid username or password.'
     else:
         return render_template('login.html')
+    
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('userid', None)
+    session.pop('email', None)
+    return redirect(url_for('login'))
 
 
 @app.route("/popular/<int:user_id>", methods=['GET', 'POST'])
