@@ -32,7 +32,6 @@ def register():
         username = request.form['username']
         pass_word = request.form['pass_word']
         conn = get_db_connection()
-        existing_user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
         conn.execute('INSERT INTO users (username, pass_word) VALUES (?, ?)',
                         (username, pass_word))
         conn.commit()
