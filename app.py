@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 import sqlite3
 from werkzeug.exceptions import abort
 import mysql.connector
-from flask-bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt
 
 def get_db_connection():
     conn = sqlite3.connect('database.db') 
