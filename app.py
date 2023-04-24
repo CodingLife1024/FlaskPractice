@@ -21,6 +21,12 @@ def get_user(user_id):
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'pythonlogin'
+
+mysql = MySQL(app)
 
 @app.route("/")
 @app.route('/welcome')
@@ -44,12 +50,12 @@ def register():
     
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
+    if request.method == 'POST' and 'username' in request.form and 'pass_word' in request.form:
         username = request.form['username']
-        password = request.form['password']
+        pass_word = request.form['pass_word']
         conn = get_db_connection()
         c = conn.cursor()
-        c.execute('SELECT user_id FROM users WHERE username=? AND pass_word=?', (username, password))
+        c.execute('SELECT user_id FROM users WHERE username=? AND pass_word=?', (username, pass_word))
         user_id = c.fetchone()
         conn.close()
         if user_id:
