@@ -1,8 +1,9 @@
 from flask import Flask, render_template, url_for, flash, redirect, request, session
 import sqlite3
 from werkzeug.exceptions import abort
-import mysql.connector
-from flask_bcrypt import Bcrypt
+from flask_mysqldb import MySQL
+import MySQLdb.cursors
+import re
 
 def get_db_connection():
     conn = sqlite3.connect('database.db') 
@@ -38,7 +39,7 @@ def register():
         conn.close()
         return redirect(url_for('login'))
     else:
-        return redirect(url_for('register'))
+        return render_template('register.html')
 
     
 @app.route('/login', methods=['GET', 'POST'])
@@ -46,7 +47,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        conn = sqlite3.connect('database.db')
+        conn = get_db_connection()
         c = conn.cursor()
         c.execute('SELECT user_id FROM users WHERE username=? AND pass_word=?', (username, password))
         user_id = c.fetchone()
@@ -57,7 +58,7 @@ def login():
         else:
             return 'Invalid username or password.'
     else:
-        return render_template('register.html')
+        return render_template('login.html')
 
 
 @app.route("/popular/<int:user_id>", methods=['GET', 'POST'])
