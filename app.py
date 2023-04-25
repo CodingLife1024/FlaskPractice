@@ -7,24 +7,6 @@ app = Flask(__name__)
 app.config['DATABASE'] = os.path.join(app.root_path, 'database.db')
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
-def get_db():
-    if 'db' not in g:
-        g.db = sqlite3.connect(
-            app.config['DATABASE'],
-            detect_types=sqlite3.PARSE_DECLTYPES
-        )
-        g.db.row_factory = sqlite3.Row
-        with app.open_resource('new.sql') as f:
-            g.db.executescript(f.read().decode('utf8'))
-    return g.db
-
-def get_writer_name(user_id, conn):
-    cursor = conn.cursor()
-    cursor.execute('SELECT username FROM users WHERE user_id = ?', (user_id,))
-    writer_name = cursor.fetchone()[0]
-    cursor.close()
-    return writer_name
-
 def get_db_connection():
     conn = sqlite3.connect('database.db') 
     conn.row_factory = sqlite3.Row 
@@ -34,6 +16,15 @@ def get_user(user_id):
     conn = get_db_connection()
     post = conn.execute('SELECT * FROM users WHERE user_id = ?',
                         (user_id,)).fetchone()
+    conn.close()
+    if post is None:
+        abort(404)
+    return post
+
+def get_post(post_id):
+    conn = get_db_connection()
+    post = conn.execute('SELECT * FROM posts WHERE post_id = ?',
+                        (post_id,)).fetchone()
     conn.close()
     if post is None:
         abort(404)
@@ -82,10 +73,8 @@ def popular(user_id):
     user = get_user(user_id)
     conn = get_db_connection()
     posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id').fetchall()
-    posts1 = conn.execute('SELECT * FROM posts WHERE user_id = ?', (user_id,)).fetchall()
-    post_count = len(posts1)
     conn.close()
-    return render_template('popular.html', user=user, posts=posts, post_count=post_count)
+    return render_template('popular.html', user=user, posts=posts)
 
 @app.route("/timeline/<int:user_id>", methods=['GET', 'POST'])
 def timeline(user_id):
@@ -162,10 +151,13 @@ def edit_profile(user_id):
 @app.route('/comments/<int:user_id>', methods=['GET', 'POST'])
 def comments(user_id):
     user=get_user(user_id)
-    return render_template('displayComments.html', user=user)
+    conn = get_db_connection()
+    comments=conn.execute('SELECT * FROM comments WHERE user_id = ?', (user_id,)).fetchall()
+    conn.close()
+    return render_template('displayComments.html', comments=comments)
 
-@app.route('/comments/<int:user_id>/new', methods=['GET', 'POST'])
-def index(user_id):
+@app.route('/comments/<int:user_id>/<int:post_id>/new', methods=['GET', 'POST'])
+def newComment(user_id, post_id):
     user=get_user(user_id)
     if request.method == 'POST':
         if request.form['submit_button'] == 'submit':
