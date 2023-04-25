@@ -12,7 +12,15 @@ cur.execute("INSERT INTO users (username, pass_word) VALUES (?, ?)", ("Mrunal", 
 cur.execute("INSERT INTO users (username, pass_word) VALUES (?, ?)", ("Kanu", "Kanu"))
 
 cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's first post."))
-cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (2, "This is Mrunal's first post."))
+cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's second post."))
+cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's third post."))
+cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's fourth post."))
+cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's fifth post."))
+cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's sixth post."))
+cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's seventh post."))
+cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's eighth post."))
+cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's ninthpost."))
+cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's tenth post."))
 cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (3, "This is Kanishka's first post."))
 
 connection.commit()

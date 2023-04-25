@@ -33,7 +33,9 @@
                             <div class="pp">
                                 <img src="{{ url_for('static', filename=post['pic']) }}" alt="Profile Picture">
                             </div>
-                            <div class="name"><h2>{{ post['username'] }}</h2></div>
+                            <div class="name">
+                                <h2><a href="{{ url_for('profile', user_id=post['user_id']) }}">{{ post['username'] }}</a></h2>
+                            </div>
                             <div class="dateTime"><h3>{{ post['created'] }}</h3> </div>
                         </div>
                         <!-- <div class="pic">

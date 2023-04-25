@@ -82,9 +82,10 @@ def popular(user_id):
     user = get_user(user_id)
     conn = get_db_connection()
     posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id').fetchall()
+    posts1 = conn.execute('SELECT * FROM posts WHERE user_id = ?', (user_id,)).fetchall()
+    post_count = len(posts1)
     conn.close()
-    return render_template('popular.html', user=user, posts=posts)
-
+    return render_template('popular.html', user=user, posts=posts, post_count=post_count)
 
 @app.route("/timeline/<int:user_id>", methods=['GET', 'POST'])
 def timeline(user_id):
@@ -115,7 +116,10 @@ def profilefollowing(user_id):
 @app.route("/profile/<int:user_id>/posts", methods=['GET', 'POST'])
 def profileposts(user_id):
     user = get_user(user_id)
-    return render_template("profileposts.html", user=user)
+    conn = get_db_connection()
+    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id WHERE posts.user_id = ?', (user_id,)).fetchall()
+    conn.close()
+    return render_template('popular.html', user=user, posts=posts)
 
 @app.route("/profile/<int:user_id>/create", methods=['GET', 'POST'])
 def create(user_id):
