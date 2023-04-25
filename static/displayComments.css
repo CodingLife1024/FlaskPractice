@@ -86,9 +86,14 @@
 
 .fullbox{
     background-color: rgba(250, 235, 215, 0.4);
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 0px;
     border-radius: 10px;
     border: 1px solid blue;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .lldd{
