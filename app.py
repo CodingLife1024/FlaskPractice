@@ -1,9 +1,27 @@
-from flask import Flask, render_template, url_for, flash, redirect, request, session
+from flask import Flask, render_template, url_for, flash, redirect, request, session, g
 import sqlite3
+import os
 from werkzeug.exceptions import abort
-from flask_mysqldb import MySQL
-import MySQLdb.cursors
-import re
+
+app = Flask(__name__)
+app.config['DATABASE'] = os.path.join(app.root_path, 'database.db')
+app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+
+def get_db():
+    if 'db' not in g:
+        g.db = sqlite3.connect(
+            app.config['DATABASE'],
+            detect_types=sqlite3.PARSE_DECLTYPES
+        )
+        g.db.row_factory = sqlite3.Row
+        with app.open_resource('new.sql') as f:
+            g.db.executescript(f.read().decode('utf8'))
+    return g.db
+
+@app.teardown_appcontext
+def close_db(error):
+    if hasattr(g, 'db'):
+        g.db.close()
 
 def get_db_connection():
     conn = sqlite3.connect('database.db') 
@@ -18,15 +36,6 @@ def get_user(user_id):
     if post is None:
         abort(404)
     return post
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'login'
-
-mysql = MySQL(app)
 
 @app.route("/")
 @app.route('/welcome')
@@ -65,13 +74,7 @@ def login():
             return 'Invalid username or password.'
     else:
         return render_template('login.html')
-    
-@app.route('/logout')
-def logout():
-    session.pop('loggedin', None)
-    session.pop('userid', None)
-    session.pop('email', None)
-    return redirect(url_for('login'))
+
 
 
 @app.route("/popular/<int:user_id>", methods=['GET', 'POST'])
@@ -182,8 +185,6 @@ def ind():
     posts = conn.execute('SELECT * FROM posts').fetchall()
     conn.close()
     return render_template('pot.html', posts=posts)
-
-
 
 
 if __name__ == '__main__':
