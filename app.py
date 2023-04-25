@@ -79,7 +79,10 @@ def popular(user_id):
 @app.route("/timeline/<int:user_id>", methods=['GET', 'POST'])
 def timeline(user_id):
     user = get_user(user_id)
-    return render_template('timeline.html', user=user)
+    conn = get_db_connection()
+    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id').fetchall()
+    conn.close()
+    return render_template('timeline.html', user=user, posts=posts)
 
 @app.route('/search/<int:user_id>', methods=['GET', 'POST'])
 def search(user_id):
