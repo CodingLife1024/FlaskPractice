@@ -27,15 +27,20 @@
                     <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
                 </div>
                 <div class="postComment">
-                    <div class="heading"><h2>Add a New Comment !!!</h2></div>
-                    <div class="new">
-                        <textarea id="newComment" name="newComment" placeholder="Add a new comment"></textarea>
-                        <form method="post" action="{{ url_for('comments', user_id = user['user_id']) }}">
-                            <div class="buttons">
-                                <input type="submit" name="submit_button" value="Submit">
-                                <input type="submit" name="submit_button" value="Discard">
-                            </div>
-                        </form>
+                    <div class="heading"><h2>Create a New Comment !!!</h2></div>
+                        <div class="new">
+                            <form method="post" enctype="multipart/form-data" id="myForm">
+                                <div class="form-group">
+                                    <label for="content"></label>
+                                    <textarea name="content" class="form-control" placeholder="Add post content"></textarea>
+                                </div>
+                                <div class="buttons">
+                                    <input type="submit" name="submit_button" value="Publish">
+                                    <input type="submit" name="submit_button" value="Discard" onclick="document.getElementById('myForm').reset();">
+                                </div>
+                            </form>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
