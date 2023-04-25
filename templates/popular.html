@@ -26,7 +26,42 @@
                     <button><a style="text-decoration: none" href="{{ url_for('profile', user_id = user['user_id']) }}"><span>Profile</span></a></button>
                     <button><a style="text-decoration: none" href="{{ url_for('login') }}"><span>Logout</span></a></button>
                 </div>
-                <div class="postts"></div>
+                <div class="poss">
+                    {% for post in posts %}
+                    <div class="postts">
+                        <div class="nameDate">
+                            <div class="pp">
+                                <img src="{{ url_for('static', filename=post['pic']) }}" alt="Profile Picture">
+                            </div>
+                            <div class="name"><h2>{{ post['username'] }}</h2></div>
+                            <div class="dateTime"><h3>{{ post['created'] }}</h3> </div>
+                        </div>
+                        <!-- <div class="pic">
+                            <img src="{{ url_for('static', filename=post['pic']) }}">
+                        </div> -->
+                        <div class="content">
+                            <h2>{{ post['content'] }}</h2>
+                        </div>
+                        <div class="likeDislike">
+                            <div class="likes">
+                                <img src="{{ url_for('static', filename='like_photo.png') }}">
+                                <div class="num"><h4>12</h4></div>
+                            </div>
+                            <div class="dislikes">
+                                <img src="{{ url_for('static', filename='dislike_pic.png') }}">
+                                <div class="num"><h4>15</h4></div>
+                            </div>
+                            <div class="comments">
+                                <a href="{{ url_for('comments', user_id = user['user_id']) }}">
+                                    <img src="{{ url_for('static', filename='Comment.png') }}" width="20px" height="20px">
+                                </a>
+                                <div class="num"><h4>129</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                </div>
             </div>
         </div>
     </body>

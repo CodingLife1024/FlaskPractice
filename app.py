@@ -18,10 +18,12 @@ def get_db():
             g.db.executescript(f.read().decode('utf8'))
     return g.db
 
-@app.teardown_appcontext
-def close_db(error):
-    if hasattr(g, 'db'):
-        g.db.close()
+def get_writer_name(user_id, conn):
+    cursor = conn.cursor()
+    cursor.execute('SELECT username FROM users WHERE user_id = ?', (user_id,))
+    writer_name = cursor.fetchone()[0]
+    cursor.close()
+    return writer_name
 
 def get_db_connection():
     conn = sqlite3.connect('database.db') 
@@ -75,12 +77,14 @@ def login():
     else:
         return render_template('login.html')
 
-
-
 @app.route("/popular/<int:user_id>", methods=['GET', 'POST'])
 def popular(user_id):
     user = get_user(user_id)
-    return render_template('popular.html', user=user)
+    conn = get_db_connection()
+    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id').fetchall()
+    conn.close()
+    return render_template('popular.html', user=user, posts=posts)
+
 
 @app.route("/timeline/<int:user_id>", methods=['GET', 'POST'])
 def timeline(user_id):

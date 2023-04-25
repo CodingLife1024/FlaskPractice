@@ -80,9 +80,10 @@ h1{
   height: fit-content;
   margin-left: 150px;
   margin-right: 50px;
+  margin-bottom: 20px;
   background-color: rgba(250, 235, 215, 0.4);
   border-radius: 20px;
-  width: 30%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
