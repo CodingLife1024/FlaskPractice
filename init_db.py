@@ -23,5 +23,13 @@ cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is R
 cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (1, "This is Riddhi's tenth post."))
 cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", (3, "This is Kanishka's first post."))
 
+cur.execute("INSERT INTO comments (user_id, post_id, content) VALUES (?, ?, ?)", (1, 1, "Comment1"))
+cur.execute("INSERT INTO comments (user_id, post_id, content) VALUES (?, ?, ?)", (1, 1, "Comment2"))
+cur.execute("INSERT INTO comments (user_id, post_id, content) VALUES (?, ?, ?)", (1, 1, "Comment3"))
+cur.execute("INSERT INTO comments (user_id, post_id, content) VALUES (?, ?, ?)", (1, 1, "Comment4"))
+cur.execute("INSERT INTO comments (user_id, post_id, content) VALUES (?, ?, ?)", (1, 1, "Comment5"))
+cur.execute("INSERT INTO comments (user_id, post_id, content) VALUES (?, ?, ?)", (1, 1, "Comment6"))
+cur.execute("INSERT INTO comments (user_id, post_id, content) VALUES (?, ?, ?)", (1, 1, "Comment7"))
+
 connection.commit()
 connection.close()

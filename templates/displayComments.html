@@ -24,17 +24,17 @@
                 <div class="com21">
                     <div class="commentttr">
                         <h1>Comments</h1>
-                        <button><a style="text-decoration: none" href="{{ url_for('newComment', user_id=user['user_id'], post_id=post['id']) }}">Add Comment</a></button>
+                        <button><a style="text-decoration: none" href="{{ url_for('newComment', user_id=user['user_id'], post_id=post['post_id']) }}">Add Comment</a></button>
 
                     </div>
-                    
+                    {% for comment in comments %}
                     <div class="fullbox">
                         <div class="loweup">
                             <div class="imm11">
-                                <img src="{{ url_for('static', filename='me.jpeg') }}">
+                                <h2>{{ comment['user_id'] }}</h2>>
                             </div>
                             <div class="comtext">
-                                <p>You are so beautiful!</p>
+                                <p>{{ comment['content'] }}</p>
                             </div>
                         </div>  
                         <div class="lldd">
@@ -56,6 +56,7 @@
                             </div>
                         </div>                 
                     </div>
+                    {% endfor %}
                     
                 </div>
             </div>

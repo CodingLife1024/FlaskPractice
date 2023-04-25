@@ -148,26 +148,29 @@ def edit_profile(user_id):
 
     return render_template('editProfile.html', user=user)
 
-@app.route('/comments/<int:user_id>', methods=['GET', 'POST'])
-def comments(user_id):
-    # conn = get_db_connection()
-    # comments=conn.execute('SELECT * FROM comments WHERE post_id = ?', (post_id,)).fetchall()
-    # conn.close()
-    return render_template('displayComments.html')
+@app.route('/comments/<int:user_id>/<int:post_id>', methods=['GET', 'POST'])
+def comments(user_id, post_id):
+    user=get_user(user_id)
+    post=get_post(post_id)
+    conn = get_db_connection()
+    comments=conn.execute('SELECT * FROM comments WHERE post_id = ?', (post_id,)).fetchall()
+    conn.close()
+    return render_template('displayComments.html', user=user, post=post, comments=comments)
 
 @app.route('/comments/<int:user_id>/<int:post_id>/new', methods=['GET', 'POST'])
 def newComment(user_id, post_id):
     user=get_user(user_id)
+    post=get_post(post_id)
     if request.method == 'POST':
-        if request.form['submit_button'] == 'submit':
-            # do something with submitted data
-            return "Comment Submitted"
-        elif request.form['submit_button'] == 'discard':
-            # discard submitted data
-            return "Comment Discarded"
+        content = request.form['content']
+        conn = get_db_connection()
+        conn.execute('INSERT INTO comments (content, user_id, post_id) VALUES (?, ?, ?)',
+                     (content, user_id, post_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('comments', user_id=user_id, post_id=post_id))
     else:
         return render_template('addComments.html', user=user)
-
 
 
 
