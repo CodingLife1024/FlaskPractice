@@ -38,9 +38,9 @@
                             </div>
                             <div class="dateTime"><h3>{{ post['created'] }}</h3> </div>
                         </div>
-                        <!-- <div class="pic">
+                        <div class="pic">
                             <img src="{{ url_for('static', filename=post['pic']) }}">
-                        </div> -->
+                        </div>
                         <div class="content">
                             <h2>{{ post['content'] }}</h2>
                         </div>
@@ -54,7 +54,7 @@
                                 <div class="num"><h4>15</h4></div>
                             </div>
                             <div class="comments">
-                                <a href="{{ url_for('comments', user_id = user['user_id']) }}">
+                                <a href="{{ url_for('comments', user_id=user['user_id'], post_id=post['post_id']) }}">
                                     <img src="{{ url_for('static', filename='Comment.png') }}" width="20px" height="20px">
                                 </a>
                                 <div class="num"><h4>129</h4></div>

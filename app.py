@@ -92,7 +92,10 @@ def search(user_id):
 @app.route("/profile/<int:user_id>", methods=['GET', 'POST'])
 def profile(user_id):
     user = get_user(user_id)
-    return render_template('profile.html', user=user)
+    conn = get_db_connection()
+    post_count = conn.execute('SELECT COUNT(*) FROM posts WHERE user_id = ?', (user_id,)).fetchone()[0]
+    conn.close()
+    return render_template('profile.html', user=user, post_count=post_count)
 
 @app.route("/profile/<int:user_id>/followers", methods=['GET', 'POST'])
 def profilefollowers(user_id):
@@ -145,16 +148,12 @@ def edit_profile(user_id):
 
     return render_template('editProfile.html', user=user)
 
-
-
-
 @app.route('/comments/<int:user_id>', methods=['GET', 'POST'])
 def comments(user_id):
-    user=get_user(user_id)
-    conn = get_db_connection()
-    comments=conn.execute('SELECT * FROM comments WHERE user_id = ?', (user_id,)).fetchall()
-    conn.close()
-    return render_template('displayComments.html', comments=comments)
+    # conn = get_db_connection()
+    # comments=conn.execute('SELECT * FROM comments WHERE post_id = ?', (post_id,)).fetchall()
+    # conn.close()
+    return render_template('displayComments.html')
 
 @app.route('/comments/<int:user_id>/<int:post_id>/new', methods=['GET', 'POST'])
 def newComment(user_id, post_id):
