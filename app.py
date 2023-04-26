@@ -62,7 +62,7 @@ def login():
         conn.close()
         if user_id:
             session['user_id'] = user_id[0]
-            return redirect(url_for('profile', user_id=user_id[0]))
+            return redirect(url_for('profile', user_id=1))
         else:
             return 'Invalid username or password.'
     else:
@@ -72,7 +72,7 @@ def login():
 def popular(user_id):
     user = get_user(user_id)
     conn = get_db_connection()
-    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id').fetchall()
+    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id ORDER BY posts.post_id DESC').fetchall()
     conn.close()
     return render_template('popular.html', user=user, posts=posts)
 
@@ -80,7 +80,7 @@ def popular(user_id):
 def timeline(user_id):
     user = get_user(user_id)
     conn = get_db_connection()
-    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id').fetchall()
+    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id ORDER BY posts.post_id DESC').fetchall()
     conn.close()
     return render_template('timeline.html', user=user, posts=posts)
 
@@ -112,7 +112,7 @@ def profilefollowing(user_id):
 def profileposts(user_id):
     user = get_user(user_id)
     conn = get_db_connection()
-    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id WHERE posts.user_id = ?', (user_id,)).fetchall()
+    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id WHERE posts.user_id = ? ORDER BY posts.post_id DESC', (user_id,)).fetchall()
     conn.close()
     return render_template('popular.html', user=user, posts=posts)
 
@@ -156,7 +156,7 @@ def comments(user_id, post_id):
     user=get_user(user_id)
     post=get_post(post_id)
     conn = get_db_connection()
-    comments=conn.execute('SELECT * FROM comments WHERE post_id = ?', (post_id,)).fetchall()
+    comments = conn.execute('SELECT * FROM comments WHERE post_id = ? ORDER BY comment_id DESC', (post_id,)).fetchall()
     conn.close()
     return render_template('displayComments.html', user=user, post=post, comments=comments)
 
