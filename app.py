@@ -68,13 +68,13 @@ def login():
     else:
         return render_template('login.html')
 
-@app.route("/popular/<int:user_id>", methods=['GET', 'POST'])
-def popular(user_id):
-    user = get_user(user_id)
-    conn = get_db_connection()
-    posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id ORDER BY posts.post_id DESC').fetchall()
-    conn.close()
-    return render_template('popular.html', user=user, posts=posts)
+# @app.route("/popular/<int:user_id>", methods=['GET', 'POST'])
+# def popular(user_id):
+#     user = get_user(user_id)
+#     conn = get_db_connection()
+#     posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id ORDER BY posts.post_id DESC').fetchall()
+#     conn.close()
+#     return render_template('popular.html', user=user, posts=posts)
 
 @app.route("/timeline/<int:user_id>", methods=['GET', 'POST'])
 def timeline(user_id):
@@ -114,7 +114,7 @@ def profileposts(user_id):
     conn = get_db_connection()
     posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id WHERE posts.user_id = ? ORDER BY posts.post_id DESC', (user_id,)).fetchall()
     conn.close()
-    return render_template('popular.html', user=user, posts=posts)
+    return render_template('timeline.html', user=user, posts=posts)
 
 @app.route("/profile/<int:user_id>/create", methods=['GET', 'POST'])
 def create(user_id):

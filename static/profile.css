@@ -68,8 +68,33 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 30%;
   gap: 10px;
+}
+
+.butto button {
+  background-color: rgb(242, 172, 172);
+  border: none;
+  color: black;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 20px;
+  width: 100%;
+  height: 50px;
+  display: block;;
+  margin: 2px solid red;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.butto button:hover {
+  background-color: #1bfeeb;
+  color: black;
+}
+
+.butto button:active {
+  background-color: black;
+  color: white;
 }
 
 .profBottom button {
@@ -83,6 +108,7 @@ h1{
   align-items: center;
   height: 60px;
   font-size: 15px;
+  width: 150px;
   border-radius: 20px;
   border: 1px solid green;
   transition: background-color 0.1s ease-in-out, color 0.3s ease-in-out;
@@ -117,12 +143,15 @@ h4{
   border-radius: 50%;
   border: 2px solid black;
   overflow: hidden;
+  background-size: cover;
+  background-position: center;
 }
 
 .circular-image img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  display: none; /* hide the image if the background image is shown */
 }
 
 .bio{
@@ -161,29 +190,4 @@ h4{
 /* Add a background color on hover */
 .btn-group button:hover {
   background-color: #b9bab9;
-}
-
-.butto button {
-  background-color: rgb(242, 172, 172);
-  border: none;
-  color: black;
-  padding: 10px 24px;
-  cursor: pointer;
-  font-size: 20px;
-  border-radius: 20px;
-  width: 100%;
-  height: 50px;
-  display: block;;
-  margin: 2px solid red;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-.butto button:hover {
-  background-color: #1bfeeb;
-  color: black;
-}
-
-.butto button:active {
-  background-color: black;
-  color: white;
 }

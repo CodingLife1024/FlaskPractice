@@ -6,7 +6,7 @@ CREATE TABLE users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT NOT NULL,
     pass_word TEXT NOT NULL,
-    bio VARCHAR(200) NOT NULL DEFAULT "",
+    bio TEXT NOT NULL DEFAULT "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo ante nec felis commodo aliquam. Donec rhoncus euismod velit a faucibus. Fusce in urna ut quam ullamcorper cursus. Sed vel imperdiet magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
     pic LONGBLOB NOT NULL DEFAULT "static/unk.jpg"
 );
 
