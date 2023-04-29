@@ -76,13 +76,6 @@ def timeline(user_id):
     conn.close()
     return render_template('timeline.html', user=user, posts=posts)
 
-@app.route('/search/<int:user_id>', methods=['GET', 'POST'])
-def search(user_id):
-    user=get_user(user_id)
-    conn = get_db_connection()
-    conn.close()
-    return render_template('search.html', user=user)
-
 @app.route("/profile/<int:user_id>", methods=['GET', 'POST'])
 def profile(user_id):
     user = get_user(user_id)
@@ -90,14 +83,6 @@ def profile(user_id):
     post_count = conn.execute('SELECT COUNT(*) FROM posts WHERE user_id = ?', (user_id,)).fetchone()[0]
     conn.close()
     return render_template('profile.html', user=user, post_count=post_count)
-
-@app.route("/profile/<int:user_id>/followers", methods=['GET', 'POST'])
-def profilefollowers(user_id):
-    return render_template("followers.html")
-
-@app.route("/profile/<int:user_id>/following", methods=['GET', 'POST'])
-def profilefollowing(user_id):
-    return render_template("following.html")
 
 @app.route("/profile/<int:user_id>/posts", methods=['GET', 'POST'])
 def profileposts(user_id):
