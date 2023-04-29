@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600;700&display=swap');
+
+body, html{
+  background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, rgb(0, 200, 255) , rgb(125, 235, 85));
+  padding: 1%;
+}
+
+.top{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  height: 20%;
+  background-color: transparent;
+  margin-bottom: 50px;
+}
+
+.logo{
+  margin-right: 0;
+}
+
+.logo img {
+  height: 100px;
+  margin-right: 20px;
+}
+
+.titl{
+  margin: 0;
+}
+
+h1{
+    color: black;
+    font-size: 40px;
+    font-family: 'Roboto Slab', serif;
+    margin: 0;
+}
+
+.bottom{
+  display: flex;
+  width: 100%;
+}
+
+.btn-group{
+  width: 200px;
+}
+
+.btn-group button {
+  background-color: #ffffff; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: black; /* White text */
+  padding: 10px 24px; /* Some padding */
+  margin: 3px;
+  cursor: pointer; /* Pointer/hand icon */
+  font-size: 20px;
+  border-radius: 20px;
+  width: 100%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #b9bab9;
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 200px;
+    margin-bottom: 30px;
+}
+
+label {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+input[type="search"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 400px;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0062cc;
+}
