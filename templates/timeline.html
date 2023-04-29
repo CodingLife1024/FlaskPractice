@@ -95,6 +95,10 @@
                     const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16); // generate random color
                     document.querySelector('.advice').innerHTML = advice;
                     document.querySelector('.advice').style.color = randomColor; // apply random color
+                    document.querySelector('.advice').style.textShadow = `0.2px 0.2px 1px #000,
+                                                          -0.2px -0.2px 0 #000,
+                                                          0.2px -0.2px 0 #000,
+                                                          -0.2px 0.2px 0 #000`; // apply black outline
                     document.querySelector('.advice').style.display = 'block';
                     document.querySelector('.loading').style.display = 'none';
                 })
