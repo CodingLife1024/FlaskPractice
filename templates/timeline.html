@@ -40,11 +40,13 @@
                             </div>
                             <div class="dateTime"><h3>{{ post['created'] }}</h3> </div>
                         </div>
-                        <div class="pic">
-                            {% if post['pic'] is not none %}
+
+                        {% if post['pic'] %}
+                            <div class="pic">
                                 <img src="{{ url_for('static', filename='load.jpg') }}" alt="Default Image">
-                            {% endif %}
-                        </div>
+                            </div>
+                        {% endif %}
+
                         <div class="content">
                             <h2>{{ post['content'] }}</h2>
                         </div>

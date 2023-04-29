@@ -30,8 +30,10 @@
                     {% for comment in comments %}
                     <div class="fullbox">
                         <div class="loweup">
+                            <a href="{{ url_for('profile', user_id=comment['user_id']) }}">
                             <div class="imm11"  style="background-image: url('{{ url_for('static', filename='unk.jpg') }}');">
                             </div>
+                            </a>
                             <div class="comtext">
                                 <p>{{ comment['content'] }}</p>
                             </div>
