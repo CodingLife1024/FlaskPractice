@@ -64,7 +64,7 @@ def login():
         conn.close()
         if user_id:
             session['user_id'] = user_id[0]
-            return redirect(url_for('profile', user_id=1))
+            return redirect(url_for('profile', user_id=session['user_id']))
         else:
             return 'Invalid username or password.'
     else:
