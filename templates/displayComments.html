@@ -30,8 +30,7 @@
                     {% for comment in comments %}
                     <div class="fullbox">
                         <div class="loweup">
-                            <div class="imm11">
-                                <h2>{{ comment['user_id'] }}</h2>>
+                            <div class="imm11"  style="background-image: url('{{ url_for('static', filename='unk.jpg') }}');">
                             </div>
                             <div class="comtext">
                                 <p>{{ comment['content'] }}</p>
@@ -42,17 +41,11 @@
                                 <div class="imlike">
                                     <img src="{{ url_for('static',filename='like_photo.png')}}">
                                 </div>
-                                <div class="nolikes">
-                                    <p>0</p>
-                                </div>
                             </div>
                             <div class="k1">
                                 <div class="imdislike">
                                     <img src="{{ url_for('static',filename='dislike_pic.png')}}">
                                 </div>
-                                <div class="nodislikes">
-                                    <p>0</p>
-                                </div> 
                             </div>
                         </div>                 
                     </div>
