@@ -31,7 +31,9 @@
                     <div class="postts">
                         <div class="nameDate">
                             <div class="pp" style="background-image: url('{{ url_for('static', filename='unk.jpg') }}');">
-                                <img src="{{ url_for('static', filename=post['pic']) }}" alt="Profile Picture">
+                                {% if post['pic'] is not none %}
+                                    <img src="{{ url_for('static', filename=post['pic']) }}" alt="Profile Picture">
+                                {% endif %}
                             </div>
                             <div class="name">
                                 <h2><a href="{{ url_for('profile', user_id=post['user_id']) }}">{{ post['username'] }}</a></h2>
@@ -39,7 +41,9 @@
                             <div class="dateTime"><h3>{{ post['created'] }}</h3> </div>
                         </div>
                         <div class="pic">
-                            <img src="{{ url_for('static', filename=post['pic']) }}">
+                            {% if post['pic'] is not none %}
+                                <img src="{{ url_for('static', filename=post['pic']) }}">
+                            {% endif %}
                         </div>
                         <div class="content">
                             <h2>{{ post['content'] }}</h2>
@@ -63,8 +67,40 @@
                     </div>
                     {% endfor %}
                 </div>
+                
+                <div class="apipart">
+
+                    <blockquote>
+                        <p>Giving other people advice is one of the most irritating and useless activities known to man.</p>
+                        <footer>- Barbara Mertz</footer>
+                      </blockquote>
+                      <hr>
+                      <h3>Get some advice:</h3>
+                      <p class="advice"></p>
+                      <button class="btn" onclick="getAdvice()">New Advice</button>
+                      <p class="loading" style="display:none;">Fetching advice...</p>
+
                 </div>
             </div>
         </div>
+        <script>
+
+            function getAdvice() {
+                document.querySelector('.loading').style.display = 'block';
+                document.querySelector('.advice').style.display = 'none';
+                fetch('https://api.adviceslip.com/advice')
+                .then(response => response.json())
+                .then(data => {
+                    const advice = data.slip.advice;
+                    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16); // generate random color
+                    document.querySelector('.advice').innerHTML = advice;
+                    document.querySelector('.advice').style.color = randomColor; // apply random color
+                    document.querySelector('.advice').style.display = 'block';
+                    document.querySelector('.loading').style.display = 'none';
+                })
+            .catch(error => console.error(error));
+    }
+            
+          </script>
     </body>
 </html>

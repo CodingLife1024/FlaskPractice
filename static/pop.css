@@ -76,14 +76,22 @@ h1{
   background-color: #b9bab9;
 }
 
+.poss {
+  max-height: 75vh; /* set the maximum height of the div */
+  overflow-y: auto; /* add vertical scroll bar */
+  /* background-color: blue; */
+  width: 50%;
+  margin-left: 150px;
+}
+
 .postts{
   height: fit-content;
-  margin-left: 150px;
-  margin-right: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
   margin-bottom: 20px;
   background-color: rgba(250, 235, 215, 0.4);
   border-radius: 20px;
-  width: 50%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,7 +115,7 @@ h1{
 
 .name{
   margin-left: 10px;
-  margin-right: 300px;
+  margin-right: 230px;
   width: 100px;
 }
 
@@ -200,3 +208,50 @@ h4{
   margin-right: 20px;
 }
 
+.apipart{
+  width:20%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: white;
+  height: fit-content;
+  padding: 20px;
+  border-radius: 30px;
+  border: 2px solid black;
+}
+
+.apipart blockquote {
+  font-style: italic;
+  color: #777;
+}
+
+.apipart h3 {
+  font-size: 23px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.apipart p.advice {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.apipart .btn {
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.apipart .btn:hover {
+  background-color: #2980b9;
+}
+
+.apipart .loading {
+  font-size: 16px;
+  margin-top: 10px;
+  color: #777;
+}
