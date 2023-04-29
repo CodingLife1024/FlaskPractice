@@ -24,5 +24,11 @@ with open('post.csv', 'r') as f:
     for row in reader:
         cur.execute("INSERT INTO posts (user_id, content) VALUES (?, ?)", row)
 
+with open('comment.csv', 'r') as f:
+    reader = csv.reader(f)
+    next(reader)  # Skip header row
+    for row in reader:
+        cur.execute("INSERT INTO comments (user_id, post_id, content) VALUES (?, ?, ?)", row)
+
 connection.commit()
 connection.close()

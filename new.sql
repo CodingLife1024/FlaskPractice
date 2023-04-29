@@ -15,7 +15,7 @@ CREATE TABLE posts(
     user_id INTEGER NOT NULL,
     content TEXT NOT NULL DEFAULT "", 
     created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    pic LONGBLOB NOT NULL DEFAULT "static/unk.jpg",
+    pic LONGBLOB ,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
