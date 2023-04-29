@@ -68,14 +68,6 @@ def login():
     else:
         return render_template('login.html')
 
-# @app.route("/popular/<int:user_id>", methods=['GET', 'POST'])
-# def popular(user_id):
-#     user = get_user(user_id)
-#     conn = get_db_connection()
-#     posts = conn.execute('SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id ORDER BY posts.post_id DESC').fetchall()
-#     conn.close()
-#     return render_template('popular.html', user=user, posts=posts)
-
 @app.route("/timeline/<int:user_id>", methods=['GET', 'POST'])
 def timeline(user_id):
     user = get_user(user_id)
@@ -87,9 +79,8 @@ def timeline(user_id):
 @app.route('/search/<int:user_id>', methods=['GET', 'POST'])
 def search(user_id):
     user=get_user(user_id)
-    if request.method == 'POST':
-        search_results = request.form['searchresults']
-        return f'Search results for "{search_results}"'
+    conn = get_db_connection()
+    conn.close()
     return render_template('search.html', user=user)
 
 @app.route("/profile/<int:user_id>", methods=['GET', 'POST'])
@@ -174,23 +165,6 @@ def newComment(user_id, post_id):
         return redirect(url_for('comments', user_id=user_id, post_id=post_id))
     else:
         return render_template('addComments.html', user=user)
-
-
-
-@app.route('/exp')
-def inde():
-    conn = get_db_connection()
-    users = conn.execute('SELECT * FROM users').fetchall()
-    conn.close()
-    return render_template('index.html', users=users)
-
-@app.route('/pot')
-def ind():
-    conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM posts').fetchall()
-    conn.close()
-    return render_template('pot.html', posts=posts)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
